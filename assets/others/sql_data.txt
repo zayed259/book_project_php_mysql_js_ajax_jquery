@@ -10,14 +10,42 @@ USE book;
 --
 
 CREATE TABLE `users` (
-  `id` smallint(6) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `full_name` varchar(255) NOT NULL,
   `mobile` varchar(30) NOT NULL UNIQUE,
   `password` varchar(255) NOT NULL,
-  `role` smallint(6) NOT NULL DEFAULT 1,
+  `role` int NOT NULL DEFAULT 1,
   `created` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+
+
+
+--
+-- Table structure for table `profile`
+--
+
+CREATE TABLE `profile` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `image1` varchar(255) NOT NULL,
+  `image2` varchar(255) NOT NULL,
+  `lat` decimal(10,6) NOT NULL,
+  `lng` decimal(10,6) NOT NULL,
+  `aboutme` varchar(512) NOT NULL,
+  `division_id` int NOT NULL,
+  `district_id` int NOT NULL,
+  `area_id` int NOT NULL,
+  `created` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
 
 
 
@@ -26,8 +54,8 @@ CREATE TABLE `users` (
 --
 
 CREATE TABLE `usersprofile` (
-  `id` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `user_id` SMALLINT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NOT NULL,
   `details` VARCHAR(512) NOT NULL,
   `fbid` VARCHAR(255) NOT NULL,
   `ytlink` VARCHAR(255) NOT NULL,
@@ -44,7 +72,7 @@ CREATE TABLE `usersprofile` (
 --
 
 CREATE TABLE `division` (
-  `id` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(150) NOT NULL,
   `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY  (`id`)
@@ -58,9 +86,9 @@ CREATE TABLE `division` (
 --
 
 CREATE TABLE `district` (
-  `id` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(150) NOT NULL,
-  `division_id` SMALLINT NOT NULL,
+  `division_id` INT NOT NULL,
   `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -73,10 +101,10 @@ CREATE TABLE `district` (
 --
 
 CREATE TABLE `area` (
-  `id` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(150) NOT NULL,
-  `district_id` SMALLINT NOT NULL,
-  `division_id` SMALLINT NOT NULL,
+  `district_id` INT NOT NULL,
+  `division_id` INT NOT NULL,
   `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -89,7 +117,7 @@ CREATE TABLE `area` (
 --
 
 CREATE TABLE `author`(
-  `id` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
   `details` varchar(512) NOT NULL,
   `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -104,7 +132,7 @@ CREATE TABLE `author`(
 --
 
 CREATE TABLE `publications`(
-  `id` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
   `details` VARCHAR(512) NOT NULL,
   `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -119,7 +147,7 @@ CREATE TABLE `publications`(
 --
 
 CREATE TABLE `categories`(
-  `id` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
   `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
@@ -133,8 +161,8 @@ CREATE TABLE `categories`(
 --
 
 CREATE TABLE `subcategories`(
-  `id` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `category_id` SMALLINT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `category_id` INT NOT NULL,
   `name` VARCHAR(255) NOT NULL,
   `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
@@ -148,20 +176,20 @@ CREATE TABLE `subcategories`(
 --
 
 CREATE TABLE `bookposts`(
-  `id` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
   `details` VARCHAR(1024) NOT NULL,
   `price1` DECIMAL(10,2) NOT NULL,
   `price2` DECIMAL(10,2) NOT NULL,
   `type` VARCHAR(20) NOT NULL,
-  `user_id` SMALLINT NOT NULL,
-  `category_id` SMALLINT NOT NULL,
-  `subcategory_id` SMALLINT NOT NULL,
-  `division_id` SMALLINT NOT NULL,
-  `district_id` SMALLINT NOT NULL,
-  `area_id` SMALLINT NOT NULL,
+  `user_id` INT NOT NULL,
+  `category_id` INT NOT NULL,
+  `subcategory_id` INT NOT NULL,
+  `division_id` INT NOT NULL,
+  `district_id` INT NOT NULL,
+  `area_id` INT NOT NULL,
   `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `deleted` VARCHAR(150) DEFAULT NULL,
+  `deleted` TIMESTAMP DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -170,15 +198,15 @@ CREATE TABLE `bookposts`(
 
 
 --
--- Table structure for table `messange`
+-- Table structure for table `message`
 --
 
-CREATE TABLE `messange`(
-  `id` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `bookpost_id` SMALLINT NOT NULL,
-  `selleruser_id` SMALLINT NOT NULL,
-  `buyeruser_id` SMALLINT NOT NULL,
-  `messanges` VARCHAR(512) NOT NULL,
+CREATE TABLE `message`(
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `bookpost_id` INT NOT NULL,
+  `selleruser_id` INT NOT NULL,
+  `buyeruser_id` INT NOT NULL,
+  `messages` VARCHAR(512) NOT NULL,
   `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -193,8 +221,7 @@ CREATE TABLE `messange`(
 --
 
 
-ALTER TABLE `division`
-  ADD CONSTRAINT `id` FOREIGN KEY (`division_id`) REFERENCES `district` (`division_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `district` ADD FOREIGN KEY (`division_id`) REFERENCES `division`(`id`) ON delete restrict on update cascade;
 
 
 
