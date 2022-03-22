@@ -1,0 +1,280 @@
+https://en.wikipedia.org/wiki/Upazila
+
+DROP SCHEMA IF EXISTS book;
+CREATE SCHEMA book;
+USE book;
+
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` smallint(6) NOT NULL AUTO_INCREMENT,
+  `full_name` varchar(255) NOT NULL,
+  `mobile` varchar(30) NOT NULL UNIQUE,
+  `password` varchar(255) NOT NULL,
+  `role` smallint(6) NOT NULL DEFAULT 1,
+  `created` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+--
+-- Table structure for table `usersprofile`
+--
+
+CREATE TABLE `usersprofile` (
+  `id` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` SMALLINT NOT NULL,
+  `details` VARCHAR(512) NOT NULL,
+  `fbid` VARCHAR(255) NOT NULL,
+  `ytlink` VARCHAR(255) NOT NULL,
+  `profile_image` VARCHAR(200) NOT NULL,
+  `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+
+--
+-- Table structure for table `division`
+--
+
+CREATE TABLE `division` (
+  `id` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(150) NOT NULL,
+  `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+
+--
+-- Table structure for table `district`
+--
+
+CREATE TABLE `district` (
+  `id` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(150) NOT NULL,
+  `division_id` SMALLINT NOT NULL,
+  `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+
+--
+-- Table structure for table `area`
+--
+
+CREATE TABLE `area` (
+  `id` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(150) NOT NULL,
+  `district_id` SMALLINT NOT NULL,
+  `division_id` SMALLINT NOT NULL,
+  `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+
+--
+-- Table structure for table `author`
+--
+
+CREATE TABLE `author`(
+  `id` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NOT NULL,
+  `details` varchar(512) NOT NULL,
+  `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+
+--
+-- Table structure for table `publications`
+--
+
+CREATE TABLE `publications`(
+  `id` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NOT NULL,
+  `details` VARCHAR(512) NOT NULL,
+  `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+
+--
+-- Table structure for table `categories`
+--
+
+CREATE TABLE `categories`(
+  `id` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NOT NULL,
+  `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+
+--
+-- Table structure for table `subcategories`
+--
+
+CREATE TABLE `subcategories`(
+  `id` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `category_id` SMALLINT NOT NULL,
+  `name` VARCHAR(255) NOT NULL,
+  `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+
+--
+-- Table structure for table `bookposts`
+--
+
+CREATE TABLE `bookposts`(
+  `id` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NOT NULL,
+  `details` VARCHAR(1024) NOT NULL,
+  `price1` DECIMAL(10,2) NOT NULL,
+  `price2` DECIMAL(10,2) NOT NULL,
+  `type` VARCHAR(20) NOT NULL,
+  `user_id` SMALLINT NOT NULL,
+  `category_id` SMALLINT NOT NULL,
+  `subcategory_id` SMALLINT NOT NULL,
+  `division_id` SMALLINT NOT NULL,
+  `district_id` SMALLINT NOT NULL,
+  `area_id` SMALLINT NOT NULL,
+  `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `deleted` VARCHAR(150) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+
+
+--
+-- Table structure for table `messange`
+--
+
+CREATE TABLE `messange`(
+  `id` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `bookpost_id` SMALLINT NOT NULL,
+  `selleruser_id` SMALLINT NOT NULL,
+  `buyeruser_id` SMALLINT NOT NULL,
+  `messanges` VARCHAR(512) NOT NULL,
+  `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+||||||||||||||||||||||||||||||||||||||||||||||||
+
+
+--
+-- Relation tables
+--
+
+
+ALTER TABLE `division`
+  ADD CONSTRAINT `id` FOREIGN KEY (`division_id`) REFERENCES `district` (`division_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+
+INSERT INTO `users` (`full_name`, `mobile`, `password`) VALUES
+('Syed Zayed Hossain', '01629999666', '123456');
+
+
+
+|||||||||||||||||||||||||||||||||||||||||||||||||
+
+
+--
+-- Dumping data for table division
+--
+
+INSERT INTO division (`division_id`, `division`, `created_time`) VALUES
+(NULL,'Dhaka',NULL),
+(NULL,'Chittagong',NULL),
+(NULL,'Barisal',NULL),
+(NULL,'Khulna',NULL),
+(NULL,'Rajshahi',NULL),
+(NULL,'Sylhet',NULL),
+(NULL,'Rangpur',NULL),
+(NULL,'Mymensingh',NULL);
+
+
+--
+-- Dumping data for table district
+--
+
+INSERT INTO district (`district_id`, `district`, `division_id`, `created_time`) VALUES
+(NULL, 'Dhaka', '1', NULL),
+(NULL, 'Gazipur', '1', NULL),
+(NULL, 'Gopalganj', '1', NULL),
+(NULL, 'Kishoreganj', '1', NULL),
+(NULL, 'Madaripur', '1', NULL),
+(NULL, 'Manikganj', '1', NULL),
+(NULL, 'Munshiganj', '1', NULL),
+(NULL, 'Narayanganj', '1', NULL),
+(NULL, 'Rajbari', '1', NULL),
+(NULL, 'Shariatpur', '1', NULL),
+(NULL, 'Faridpur', '1', NULL),
+(NULL, 'Tangail', '1', NULL),
+(NULL, 'Narsingdi', '1', NULL),
+(NULL, 'Bandarban', '2', NULL),
+(NULL, 'Brahmanbaria', '2', NULL),
+(NULL, 'Bandarban', '2', NULL),
+(NULL, 'Bandarban', '2', NULL),
+(NULL, 'Bandarban', '2', NULL),
+(NULL, 'Bandarban', '2', NULL),
+(NULL, 'Bandarban', '2', NULL),
+(NULL, 'Bandarban', '2', NULL),
+(NULL, 'Bandarban', '2', NULL),
+(NULL, 'Bandarban', '2', NULL),
+(NULL, 'Bandarban', '2', NULL),
+(NULL, 'Bandarban', '2', NULL),
+(NULL, 'Bandarban', '2', NULL),
+(NULL, 'Bandarban', '2', NULL),
+(NULL, 'Bandarban', '2', NULL),
+(NULL, 'Bandarban', '2', NULL),
+(NULL, 'Bandarban', '2', NULL),
+
+
+--
+-- Dumping data for table area
+--
+
+INSERT INTO area (`area_id`, `area`, `district_id`, `division_id`, `created_time`) VALUES (NULL, 'Dhamrai', '1', '1', NULL),
+(NULL, 'Dohar', '1', '1', NULL),
+(NULL, 'Keraniganj', '1', '1', NULL),
+(NULL, 'Nawabganj', '1', '1', NULL),
+(NULL, 'Savar', '1', '1', NULL),
+(NULL, 'Gazipur', '2', '1', NULL),
+(NULL, 'Gazipur', '2', '1', NULL),
+(NULL, 'Gazipur', '2', '1', NULL),
+(NULL, 'Gazipur', '2', '1', NULL),
+(NULL, 'Gazipur', '2', '1', NULL),
+(NULL, 'Gazipur', '2', '1', NULL),
+(NULL, 'Gazipur', '2', '1', NULL),
+(NULL, 'Gazipur', '2', '1', NULL),
+(NULL, 'Gazipur', '2', '1', NULL),
+(NULL, 'Gazipur', '2', '1', NULL),
+
