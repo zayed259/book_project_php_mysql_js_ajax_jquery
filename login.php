@@ -44,10 +44,10 @@ if (isset($_POST['login'])) {
             $_SESSION['user_mobile'] = $userinfo['mobile'];
             $_SESSION['user_role'] = $userinfo['role'];
             if (isset($_SESSION['logged_in']) && $_SESSION['user_role'] == '2') {
-                header("location: admin-dashboard.php");
+                header("location: admin/admin-dashboard.php");
             }
             elseif (isset($_SESSION['logged_in']) && $_SESSION['user_role'] == '1') {
-                header("location: user-dashboard.php");
+                header("location: users/user-dashboard.php");
             } else {
                 $message = "Login failed";
                 header("location: login.php");

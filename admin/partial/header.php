@@ -1,5 +1,13 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+  session_start();
+}
+if(!isset($_SESSION['logged_in'])){
+  header("location: ../index.php");
+}
+if(isset($_SESSION['logged_in']) && $_SESSION['user_role'] != '2'){
+  header("location: ../index.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,10 +16,10 @@ session_start();
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
-  <link rel="stylesheet" href="assets/css/dataTables.bootstrap5.min.css" />
-  <link rel="stylesheet" href="assets/css/dashboard.css" />
+  <link rel="stylesheet" href="../assets/css/dataTables.bootstrap5.min.css" />
+  <link rel="stylesheet" href="../assets/css/dashboard.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <title>Boikhujo.com</title>
 </head>
@@ -23,7 +31,7 @@ session_start();
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="offcanvasExample">
         <span class="navbar-toggler-icon" data-bs-target="#sidebar"></span>
       </button>
-      <a class="navbar-brand me-auto ms-lg-0 ms-3 text-uppercase fw-bold" href="#"><i class="fa-solid fa-book"></i><span class="ms-2">boikhujo.com</span></a>
+      <a class="navbar-brand me-auto ms-lg-0 ms-3 text-uppercase fw-bold" href="../index.php"><i class="fa-solid fa-book"></i><span class="ms-2">boikhujo.com</span></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNavBar" aria-controls="topNavBar" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -113,7 +121,7 @@ session_start();
             <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
               <!-- <img src="assets/images/SZH_3113.jpg" height="30px" width="30px" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> -->
               <i class="fa-solid fa-user"></i>
-              <span class="text-light"><?php if(isset($_SESSION['full_name'])) echo "{$_SESSION['full_name']}";?></span>
+              <span class="text-light"><?php if (isset($_SESSION['full_name'])) echo "{$_SESSION['full_name']}"; ?></span>
             </a>
             <div class="dropdown-menu dropdown-menu-end">
               <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
@@ -122,7 +130,7 @@ session_start();
               <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="settings"></i> Settings & Privacy</a>
               <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help Center</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="logout.php">Log out</a>
+              <a class="dropdown-item" href="../logout.php">Log out</a>
             </div>
           </li>
         </ul>
@@ -136,7 +144,7 @@ session_start();
       <nav class="navbar-dark">
         <ul class="navbar-nav">
           <li>
-            <a href="<?php echo $_SERVER['PHP_SELF']; ?>" class="nav-link px-3 active">
+            <a href="admin-dashboard.php" class="nav-link px-3 active">
               <span class="me-2"><i class="bi bi-speedometer2"></i></span>
               <span>Dashboard</span>
             </a>
@@ -169,7 +177,7 @@ session_start();
                   </a>
                 </li>
                 <li>
-                  <a href="#" class="nav-link px-3">
+                  <a href="division-list.php" class="nav-link px-3">
                     <span class="me-2"><i class="fa-solid fa-list"></i></span>
                     <span>Division List</span>
                   </a>
@@ -196,7 +204,7 @@ session_start();
                   </a>
                 </li>
                 <li>
-                  <a href="#" class="nav-link px-3">
+                  <a href="district-list.php" class="nav-link px-3">
                     <span class="me-2"><i class="fa-solid fa-list"></i></span>
                     <span>District List</span>
                   </a>
@@ -223,7 +231,7 @@ session_start();
                   </a>
                 </li>
                 <li>
-                  <a href="#" class="nav-link px-3">
+                  <a href="area-list.php" class="nav-link px-3">
                     <span class="me-2"><i class="fa-solid fa-list"></i></span>
                     <span>Area List</span>
                   </a>

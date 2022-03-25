@@ -1,11 +1,11 @@
 <?php
-require "admin/header.php";
-require "connection.php";
+require "partial/header.php";
+
+require "../connection.php";
 $query = "SELECT `id` FROM `users`";
 $result = $conn->query($query);
 $totalUsers = $result->num_rows;
 $result->free();
-// $conn->close();
 
 $query = "SELECT `id` FROM `bookposts`";
 $result = $conn->query($query);
@@ -21,8 +21,6 @@ $query = "SELECT `id` FROM `publications`";
 $result = $conn->query($query);
 $totalPublications = $result->num_rows;
 $result->free();
-
-
 ?>
 
 <main class="mt-5 pt-3">
@@ -585,6 +583,6 @@ $result->free();
     </div>
   </div>
 </main>
-<?php require "admin/footer.php" ?>
+<?php require "partial/footer.php" ?>
 </body>
 </html>

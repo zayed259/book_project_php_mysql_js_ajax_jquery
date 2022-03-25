@@ -1,4 +1,8 @@
-<?php include 'assets/inc/header.php'; ?>
+<?php 
+require "configuration.php";
+$page = "Book Details";
+include 'assets/inc/header.php'; 
+?>
 <div class="container ">
     <div class="row">
         <div class="col-9 position_center">
@@ -43,3 +47,5 @@
 </div>
 
 <?php include "assets/inc/footer.php"; ?>
+</body>
+</html>

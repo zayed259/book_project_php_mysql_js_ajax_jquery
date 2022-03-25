@@ -1,4 +1,8 @@
-<?php include 'assets/inc/header.php'; ?>
+<?php 
+require "configuration.php";
+$page = "All Books";
+include 'assets/inc/header.php'; 
+?>
 <div class="container my-1">
     <div class="row">
         <div class="col-lg-6">
@@ -771,3 +775,5 @@
 </div>
 
 <?php include "assets/inc/footer.php"; ?>
+</body>
+</html>

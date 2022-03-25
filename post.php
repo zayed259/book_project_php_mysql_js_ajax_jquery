@@ -6,33 +6,6 @@
             <input type="text" class="form-control" id="exampleInputitem" aria-describedby="">
         </div>
         <div class="mb-4">
-            <label class="form-label" for="">Division</label>
-            <select class="form-select " aria-label="Default select example">
-                <option selected value="-1" disabled>Select</option>
-                <option value="1">Dhaka</option>
-                <option value="2">Chittagong</option>
-                <option value="3">Sylhet</option>
-            </select>
-        </div>
-        <div class="mb-4">
-            <label class="form-label" for="">District</label>
-            <select class="form-select " aria-label="Default select example">
-                <option selected value="-1" disabled>Select</option>
-                <option value="1">Dhaka</option>
-                <option value="2">Faridpur</option>
-                <option value="3">Rajbari</option>
-            </select>
-        </div>
-        <div class="mb-4">
-            <label class="form-label" for="">Area</label>
-            <select class="form-select " aria-label="Default select example">
-                <option selected value="-1" disabled>Select</option>
-                <option value="1">Mirpur</option>
-                <option value="2">Dhanmondi</option>
-                <option value="3">Dhaka Cantonment</option>
-            </select>
-        </div>
-        <div class="mb-4">
             <label class="form-label" for="">Author Name</label>
             <select class="form-select " aria-label="Default select example">
                 <option selected value="-1" disabled>Select</option>
@@ -40,6 +13,27 @@
                 <option value="2">John Donne</option>
                 <option value="3">Shakespeare</option>
             </select>
+        </div>
+        <div class="mb-4">
+            <label class="form-label" for="">Publications</label>
+            <select class="form-select" aria-label="Default select example">
+                <option selected value="-1" disabled>Select</option>
+                <option value="1">Janani Publications </option>
+                <option value="2">Popy Publications</option>
+                <option value="3">Brother's Publications</option>
+            </select>
+        </div>
+        <div class="mb-4">
+            <label for="exampleInputitem" class="form-label">Details</label>
+            <textarea name="" id="" rows="5" class="form-control"></textarea>
+        </div>
+        <div class="mb-4">
+            <label for="exampleInputitem" class="form-label">Price</label>
+            <input type="number" class="form-control" id="exampleInputitem" aria-describedby="">
+        </div>
+        <div class="mb-4">
+            <label for="exampleInputitem" class="form-label">Discount Price</label>
+            <input type="number" class="form-control" id="exampleInputitem" aria-describedby="">
         </div>
         <div class="mb-4">
             <label class="form-label" for="">Category</label>
@@ -51,12 +45,33 @@
             </select>
         </div>
         <div class="mb-4">
-            <label class="form-label" for="">Publications</label>
+            <label class="form-label" for="">Subcategory</label>
             <select class="form-select" aria-label="Default select example">
                 <option selected value="-1" disabled>Select</option>
-                <option value="1">Janani Publications </option>
-                <option value="2">Popy Publications</option>
-                <option value="3">Brother's Publications</option>
+                <option value="1">Academic</option>
+                <option value="2">Job Seeker</option>
+                <option value="3">Tragegy</option>
+            </select>
+        </div>
+        <div class="mb-4">
+            <label class="form-label" for="">Division</label>
+            <select class="form-select " aria-label="Default select example" id="division">
+                <option selected value="-1" disabled>Select</option>
+
+            </select>
+        </div>
+        <div class="mb-4">
+            <label class="form-label" for="">District</label>
+            <select class="form-select " aria-label="Default select example" id="district">
+                <option selected value="-1" disabled>Select</option>
+
+            </select>
+        </div>
+        <div class="mb-4">
+            <label class="form-label" for="">Area</label>
+            <select class="form-select " aria-label="Default select example" id="area">
+                <option selected value="-1" disabled>Select</option>
+
             </select>
         </div>
         <div class="mb-4">
@@ -71,11 +86,6 @@
             </div>
         </div>
         <div class="mb-4">
-            <label for="exampleInputprice" class="form-label">Price</label>
-            <input type="number" class="form-control" id="exampleInputprice">
-        </div>
-
-        <div class="mb-4">
             <label for="formFileSm" class="form-label">Choose Image</label>
             <input class="form-control form-control-sm" id="formFileSm" type="file">
         </div>
@@ -89,3 +99,70 @@
 </div>
 
 <?php include 'assets/inc/footer.php'; ?>
+
+<script>
+    $(document).ready(function() {
+        //for division start
+        $.getJSON("assets/classes/division.php", function(data) {
+            var division_opt = "";
+            $.each(data, function(k, v) {
+                division_opt += "<option value='" + v.id + "'>" + v.name + "</option>";
+            });
+            $("#division").append(division_opt);
+        });
+        //for division end
+
+        //for district start
+        $("#division").change(function(e) {
+            var selected_division = $(this).val();
+            if (selected_division == "-1") {
+                return;
+            }
+            $.getJSON("assets/classes/district.php", {
+                    division: selected_division,
+                    rand: Math.random()
+                },
+                function(data) {
+                    let district_opt = "";
+                    if (data.result == "0") {
+                        district_opt = "<option value='-1'>Select</option>";
+                    } else {
+                        district_opt = "<option value='-1'>Select</option>";
+                        $.each(data.records, function(k, v) {
+                            district_opt += "<option value='" + v.id + "'>" + v.name + "</option>";
+                        });
+                    }
+                    $("#district").html(district_opt);
+                });
+        });
+        //for disrtict end
+
+        //for area start
+        $("#district").change(function(e) {
+            var selected_district = $(this).val();
+            if (selected_district == "-1") {
+                return;
+            }
+            $.getJSON("assets/classes/area.php", {
+                    district: selected_district,
+                    rand: Math.random()
+                },
+                function(data) {
+                    let area_opt = "";
+                    if (data.result == "0") {
+                        area_opt = "<option value='-1'>Select</option>";
+                    } else {
+                        area_opt = "<option value='-1'>Select</option>";
+                        $.each(data.records, function(k, v) {
+                            area_opt += "<option value='" + v.id + "'>" + v.name + "</option>";
+                        });
+                    }
+                    $("#area").html(area_opt);
+                });
+        });
+        //for area end
+    });
+</script>
+</body>
+
+</html>
