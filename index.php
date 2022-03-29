@@ -1,6 +1,6 @@
 <?php 
 require "configuration.php";
-$page = "HOME";
+$page = "Home";
 include "assets/inc/header.php"; ?>
 <!-- carousel section -->
 <div class="container-fluid py-2 carousel">

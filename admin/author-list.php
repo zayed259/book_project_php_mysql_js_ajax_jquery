@@ -1,7 +1,7 @@
 <?php
 require "partial/header.php";
 require "../connection.php";
-$query = "SELECT * FROM `area` WHERE 1";
+$query = "SELECT * FROM `author` WHERE 1";
 $result = $conn->query($query);
 $conn->close();
 ?>
@@ -10,7 +10,7 @@ $conn->close();
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <h4>District List</h4>
+                <h4>Division List</h4>
             </div>
         </div>
         <div class="row">
@@ -26,8 +26,7 @@ $conn->close();
                                     <tr>
                                         <th>#</th>
                                         <th>Name</th>
-                                        <th>Division Id</th>
-                                        <th>District Id</th>
+                                        <!-- <th>Details</th> -->
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -37,8 +36,7 @@ $conn->close();
                                             echo "<tr>";
                                             echo "<td>". $row['id'] . "</td>";
                                             echo "<td>". $row['name'] . "</td>";
-                                            echo "<td>". $row['division_id'] . "</td>";
-                                            echo "<td>". $row['district_id'] . "</td>";
+                                            // echo "<td>". $row['details'] . "</td>";
                                             echo "<td><button class='btn btn-primary'><i class='fa-solid fa-pen-to-square'></i> Edit</button> <button class='btn btn-danger'> <i class='fa-solid fa-trash-can'></i> Delete</button></td>";
                                         }
                                     ?>
@@ -47,8 +45,7 @@ $conn->close();
                                     <tr>
                                         <th>Id</th>
                                         <th>Name</th>
-                                        <th>Division Id</th>
-                                        <th>District Id</th>
+                                        <!-- <th>Details</th> -->
                                         <th>Action</th>
                                     </tr>
                                 </tfoot>

@@ -10,29 +10,29 @@ if (session_status() === PHP_SESSION_NONE) {
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
-    <link rel="stylesheet" href="../../assets/css/dataTables.bootstrap5.min.css" />
-    <link rel="stylesheet" href="../../assets/css/dashboard.css" />
+    <link rel="stylesheet" href="../assets/css/dataTables.bootstrap5.min.css" />
+    <link rel="stylesheet" href="../assets/css/dashboard.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <title>Boikhujo.com</title>
 </head>
 
 <body>
     <!-- top navigation bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="offcanvasExample">
                 <span class="navbar-toggler-icon" data-bs-target="#sidebar"></span>
             </button>
-            <a class="navbar-brand" href="#">BOIKHUJO.COM</a>
+            <a class="navbar-brand" href="../index.php">BOIKHUJO.COM</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="all-products.php">All Ad</a>
+                        <a class="nav-link" aria-current="page" href="../all-products.php">All Books</a>
                     </li>
                 </ul>
                 <form class="d-flex">
@@ -62,7 +62,7 @@ if (session_status() === PHP_SESSION_NONE) {
                             <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="settings"></i> Settings & Privacy</a>
                             <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help Center</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="../../logout.php">Log out</a>
+                            <a class="dropdown-item" href="../logout.php">Log out</a>
                         </div>
                     </li>
                 </ul>
@@ -76,7 +76,7 @@ if (session_status() === PHP_SESSION_NONE) {
             <nav class="navbar-dark">
                 <ul class="navbar-nav">
                     <li>
-                        <a href="<?php echo $_SERVER['PHP_SELF']; ?>" class="nav-link px-3 active">
+                        <a href="my-profile.php" class="nav-link px-3 active">
                             <span class="me-2"><i class="bi bi-speedometer2"></i></span>
                             <span>Account</span>
                         </a>
@@ -85,9 +85,9 @@ if (session_status() === PHP_SESSION_NONE) {
                         <hr class="dropdown-divider bg-light" />
                     </li>
                     <li>
-                        <a href="#" class="text-decoration-none">
+                        <a href="my-profile.php" class="text-decoration-none">
                             <div class="row ms-2">
-                                <div class="col"><span class="ms-2">My Account</span></div>
+                                <div class="col"><span class="ms-2">My Profile</span></div>
                                 <div class="col"><span><i class="fa-solid fa-chevron-right"></i></span></div>
                             </div>
                         </a>
@@ -96,7 +96,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         <hr class="dropdown-divider bg-light" />
                     </li>
                     <li>
-                        <a href="#" class="text-decoration-none">
+                        <a href="libraries.php" class="text-decoration-none">
                             <div class="row ms-2">
                                 <div class="col"><span class="ms-2">Libraries</span></div>
                                 <div class="col"><span><i class="fa-solid fa-chevron-right"></i></span></div>
@@ -107,7 +107,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         <hr class="dropdown-divider bg-light" />
                     </li>
                     <li>
-                        <a href="#" class="text-decoration-none">
+                        <a href="favourites.php" class="text-decoration-none">
                             <div class="row ms-2">
                                 <div class="col"><span class="ms-2">Favourites</span></div>
                                 <div class="col"><span><i class="fa-solid fa-chevron-right"></i></span></div>
@@ -118,7 +118,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         <hr class="dropdown-divider bg-light" />
                     </li>
                     <li>
-                        <a href="#" class="text-decoration-none">
+                        <a href="settings.php" class="text-decoration-none">
                             <div class="row ms-2">
                                 <div class="col"><span class="ms-2">Settings</span></div>
                                 <div class="col"><span><i class="fa-solid fa-chevron-right"></i></span></div>
@@ -127,14 +127,6 @@ if (session_status() === PHP_SESSION_NONE) {
                     </li>
                     <li class="my-2">
                         <hr class="dropdown-divider bg-light" />
-                    </li>
-                    <li>
-                        <a href="#" class="text-decoration-none">
-                            <div class="row ms-2">
-                                <div class="col"><span class="ms-2">My Profile</span></div>
-                                <div class="col"><span><i class="fa-solid fa-chevron-right"></i></span></div>
-                            </div>
-                        </a>
                     </li>
                 </ul>
             </nav>

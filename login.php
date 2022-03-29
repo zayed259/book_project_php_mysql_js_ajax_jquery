@@ -47,7 +47,7 @@ if (isset($_POST['login'])) {
                 header("location: admin/admin-dashboard.php");
             }
             elseif (isset($_SESSION['logged_in']) && $_SESSION['user_role'] == '1') {
-                header("location: users/user-dashboard.php");
+                header("location: users/my-profile.php");
             } else {
                 $message = "Login failed";
                 header("location: login.php");

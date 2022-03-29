@@ -2,10 +2,10 @@
 if (session_status() === PHP_SESSION_NONE) {
   session_start();
 }
-if(!isset($_SESSION['logged_in'])){
+if (!isset($_SESSION['logged_in'])) {
   header("location: ../index.php");
 }
-if(isset($_SESSION['logged_in']) && $_SESSION['user_role'] != '2'){
+if (isset($_SESSION['logged_in']) && $_SESSION['user_role'] != '2') {
   header("location: ../index.php");
 }
 ?>
@@ -171,7 +171,7 @@ if(isset($_SESSION['logged_in']) && $_SESSION['user_role'] != '2'){
             <div class="collapse" id="layouts2">
               <ul class="navbar-nav ps-3">
                 <li>
-                  <a href="#" class="nav-link px-3">
+                  <a href="add-division.php" class="nav-link px-3">
                     <span class="me-2"><i class="fa-solid fa-plus"></i></span>
                     <span>Add Division</span>
                   </a>
@@ -198,7 +198,7 @@ if(isset($_SESSION['logged_in']) && $_SESSION['user_role'] != '2'){
             <div class="collapse" id="layouts">
               <ul class="navbar-nav ps-3">
                 <li>
-                  <a href="#" class="nav-link px-3">
+                  <a href="add-district.php" class="nav-link px-3">
                     <span class="me-2"><i class="fa-solid fa-plus"></i></span>
                     <span>Add District</span>
                   </a>
@@ -225,7 +225,7 @@ if(isset($_SESSION['logged_in']) && $_SESSION['user_role'] != '2'){
             <div class="collapse" id="layouts3">
               <ul class="navbar-nav ps-3">
                 <li>
-                  <a href="#" class="nav-link px-3">
+                  <a href="add-area.php" class="nav-link px-3">
                     <span class="me-2"><i class="fa-solid fa-plus"></i></span>
                     <span>Add Area</span>
                   </a>
@@ -261,13 +261,13 @@ if(isset($_SESSION['logged_in']) && $_SESSION['user_role'] != '2'){
             <div class="collapse" id="layouts4">
               <ul class="navbar-nav ps-3">
                 <li>
-                  <a href="#" class="nav-link px-3">
+                  <a href="add-author.php" class="nav-link px-3">
                     <span class="me-2"><i class="fa-solid fa-plus"></i></span>
                     <span>Add Author</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#" class="nav-link px-3">
+                  <a href="author-list.php" class="nav-link px-3">
                     <span class="me-2"><i class="fa-solid fa-list"></i></span>
                     <span>Author List</span>
                   </a>
@@ -288,13 +288,13 @@ if(isset($_SESSION['logged_in']) && $_SESSION['user_role'] != '2'){
             <div class="collapse" id="layouts5">
               <ul class="navbar-nav ps-3">
                 <li>
-                  <a href="#" class="nav-link px-3">
+                  <a href="add-publication.php" class="nav-link px-3">
                     <span class="me-2"><i class="fa-solid fa-plus"></i></span>
                     <span>Add Publication</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#" class="nav-link px-3">
+                  <a href="publication-list.php" class="nav-link px-3">
                     <span class="me-2"><i class="fa-solid fa-list"></i></span>
                     <span>Publications List</span>
                   </a>
@@ -315,15 +315,42 @@ if(isset($_SESSION['logged_in']) && $_SESSION['user_role'] != '2'){
             <div class="collapse" id="layouts6">
               <ul class="navbar-nav ps-3">
                 <li>
-                  <a href="#" class="nav-link px-3">
+                  <a href="add-category.php" class="nav-link px-3">
                     <span class="me-2"><i class="fa-solid fa-plus"></i></span>
                     <span>Add Catagory</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#" class="nav-link px-3">
+                  <a href="categories-list.php" class="nav-link px-3">
                     <span class="me-2"><i class="fa-solid fa-list"></i></span>
                     <span>Catagories List</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <a class="nav-link px-3 sidebar-link" data-bs-toggle="collapse" href="#layouts8">
+              <span class="me-2"><i class="fa-solid fa-table"></i></span>
+              <span>Subcatagories Table</span>
+              <span class="ms-auto">
+                <span class="right-icon">
+                  <i class="bi bi-chevron-down"></i>
+                </span>
+              </span>
+            </a>
+            <div class="collapse" id="layouts8">
+              <ul class="navbar-nav ps-3">
+                <li>
+                  <a href="add-subcategory.php" class="nav-link px-3">
+                    <span class="me-2"><i class="fa-solid fa-plus"></i></span>
+                    <span>Add Subcatagory</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="subcategories-list.php" class="nav-link px-3">
+                    <span class="me-2"><i class="fa-solid fa-list"></i></span>
+                    <span>Subcatagories List</span>
                   </a>
                 </li>
               </ul>
@@ -351,13 +378,13 @@ if(isset($_SESSION['logged_in']) && $_SESSION['user_role'] != '2'){
             <div class="collapse" id="layouts7">
               <ul class="navbar-nav ps-3">
                 <li>
-                  <a href="#" class="nav-link px-3">
+                  <a href="add-user.php" class="nav-link px-3">
                     <span class="me-2"><i class="fa-solid fa-plus"></i></span>
                     <span>Add User</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#" class="nav-link px-3">
+                  <a href="users-list.php" class="nav-link px-3">
                     <span class="me-2"><i class="fa-solid fa-list"></i></span>
                     <span>Users List</span>
                   </a>

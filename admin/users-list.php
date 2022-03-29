@@ -1,7 +1,7 @@
 <?php
 require "partial/header.php";
 require "../connection.php";
-$query = "SELECT * FROM `area` WHERE 1";
+$query = "SELECT * FROM `users` WHERE 1";
 $result = $conn->query($query);
 $conn->close();
 ?>
@@ -10,7 +10,7 @@ $conn->close();
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <h4>District List</h4>
+                <h4>Division List</h4>
             </div>
         </div>
         <div class="row">
@@ -25,30 +25,30 @@ $conn->close();
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Name</th>
-                                        <th>Division Id</th>
-                                        <th>District Id</th>
+                                        <th>Full Name</th>
+                                        <th>Mobile Number</th>
+                                        <th>Role</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                        while($row = $result->fetch_assoc()){
-                                            echo "<tr>";
-                                            echo "<td>". $row['id'] . "</td>";
-                                            echo "<td>". $row['name'] . "</td>";
-                                            echo "<td>". $row['division_id'] . "</td>";
-                                            echo "<td>". $row['district_id'] . "</td>";
-                                            echo "<td><button class='btn btn-primary'><i class='fa-solid fa-pen-to-square'></i> Edit</button> <button class='btn btn-danger'> <i class='fa-solid fa-trash-can'></i> Delete</button></td>";
-                                        }
+                                    while ($row = $result->fetch_assoc()) {
+                                        echo "<tr>";
+                                        echo "<td>" . $row['id'] . "</td>";
+                                        echo "<td>" . $row['full_name'] . "</td>";
+                                        echo "<td>" . $row['mobile'] . "</td>";
+                                        echo "<td>" . $row['role'] . "</td>";
+                                        echo "<td><button class='btn btn-primary'><i class='fa-solid fa-pen-to-square'></i> Edit</button> <button class='btn btn-danger'> <i class='fa-solid fa-trash-can'></i> Delete</button></td>";
+                                    }
                                     ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>Id</th>
-                                        <th>Name</th>
-                                        <th>Division Id</th>
-                                        <th>District Id</th>
+                                        <th>#</th>
+                                        <th>Full Name</th>
+                                        <th>Mobile Number</th>
+                                        <th>Role</th>
                                         <th>Action</th>
                                     </tr>
                                 </tfoot>
@@ -65,22 +65,22 @@ $conn->close();
     $(document).ready(function() {
         //add
         $('#add').click(function() {
-           
+
         });
 
         //edit
         $('#edit').click(function() {
-           
+
         });
 
         //delete
         $('#delete').click(function() {
-           
+
         });
 
 
         //show
-        } );
+    });
 </script>
 </body>
 

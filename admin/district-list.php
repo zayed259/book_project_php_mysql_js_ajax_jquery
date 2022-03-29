@@ -37,7 +37,7 @@ $conn->close();
                                             echo "<td>". $row['id'] . "</td>";
                                             echo "<td>". $row['name'] . "</td>";
                                             echo "<td>". $row['division_id'] . "</td>";
-                                            echo "<td><i class='fa-solid fa-pen-to-square'></i> <i class='fa-solid fa-trash-can'></i></td>";
+                                            echo "<td><button class='btn btn-primary'><i class='fa-solid fa-pen-to-square'></i> Edit</button> <button class='btn btn-danger'> <i class='fa-solid fa-trash-can'></i> Delete</button></td>";
                                         }
                                     ?>
                                 </tbody>

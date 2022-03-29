@@ -37,7 +37,7 @@
         </div>
         <div class="mb-4">
             <label class="form-label" for="">Category</label>
-            <select class="form-select" aria-label="Default select example">
+            <select class="form-select" aria-label="Default select example" id="category">
                 <option selected value="-1" disabled>Select</option>
                 <option value="1">Academic</option>
                 <option value="2">Job Seeker</option>
@@ -46,7 +46,7 @@
         </div>
         <div class="mb-4">
             <label class="form-label" for="">Subcategory</label>
-            <select class="form-select" aria-label="Default select example">
+            <select class="form-select" aria-label="Default select example" id="subcategory">
                 <option selected value="-1" disabled>Select</option>
                 <option value="1">Academic</option>
                 <option value="2">Job Seeker</option>
