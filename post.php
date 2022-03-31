@@ -1,18 +1,25 @@
-<?php include 'assets/inc/header.php'; ?>
+<?php
+require "configuration.php";
+$page = "Post Your Ad";
+include 'assets/inc/header.php';
+?>
 <div class="container mt-5">
-    <form class="form-control p-4" action="#" method="POST">
+    <form class="form-control p-4" id="bookForm" action="#" method="POST">
         <div class="mb-4">
             <label for="exampleInputitem" class="form-label">Book Name</label>
             <input type="text" class="form-control" id="exampleInputitem" aria-describedby="">
         </div>
         <div class="mb-4">
             <label class="form-label" for="">Author Name</label>
-            <select class="form-select " aria-label="Default select example">
+            <input type="text" name="author" id="author" class="form-control">
+            <!-- <select class="form-select " aria-label="Default select example">
                 <option selected value="-1" disabled>Select</option>
                 <option value="1">Rabindranath</option>
                 <option value="2">John Donne</option>
                 <option value="3">Shakespeare</option>
-            </select>
+            </select> -->
+            <input type="checkbox" name="newauthcheck" id="newauthcheck"> Not in the list?
+            <input type="text" id="newauth" name="newauth" class="form-control">
         </div>
         <div class="mb-4">
             <label class="form-label" for="">Publications</label>
@@ -39,18 +46,14 @@
             <label class="form-label" for="">Category</label>
             <select class="form-select" aria-label="Default select example" id="category">
                 <option selected value="-1" disabled>Select</option>
-                <option value="1">Academic</option>
-                <option value="2">Job Seeker</option>
-                <option value="3">Tragegy</option>
+
             </select>
         </div>
         <div class="mb-4">
             <label class="form-label" for="">Subcategory</label>
             <select class="form-select" aria-label="Default select example" id="subcategory">
                 <option selected value="-1" disabled>Select</option>
-                <option value="1">Academic</option>
-                <option value="2">Job Seeker</option>
-                <option value="3">Tragegy</option>
+
             </select>
         </div>
         <div class="mb-4">
@@ -94,7 +97,7 @@
             <label class="form-check-label" for="exampleCheck1">Check me out</label>
         </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="button" id="submitBtn" class="btn btn-primary">Submit</button>
     </form>
 </div>
 
@@ -102,6 +105,52 @@
 
 <script>
     $(document).ready(function() {
+        $("#newauth").hide(); 
+        $("#newauthcheck").change(function(){
+            if($(this).prop("checked")){
+                $("#newauth").show(500);
+            }
+            else{
+                $("#newauth").hide(500); 
+            }
+        })
+
+         //for category start
+         $.getJSON("assets/classes/categories.php", function(data) {
+            var category_opt = "";
+            $.each(data, function(k, v) {
+                category_opt += "<option value='" + v.id + "'>" + v.name + "</option>";
+            });
+            $("#category").append(category_opt);
+        });
+        //for category end
+
+        //for subcategory start
+        $("#category").change(function(e) {
+            var selected_category = $(this).val();
+            if (selected_category == "-1") {
+                return;
+            }
+            $.getJSON("assets/classes/subcategories.php", {
+                    category: selected_category,
+                    rand: Math.random()
+                },
+                function(data) {
+                    let category_opt = "";
+                    if (data.result == "0") {
+                        category_opt = "<option value='-1'>Select</option>";
+                    } else {
+                        category_opt = "<option value='-1'>Select</option>";
+                        $.each(data.records, function(k, v) {
+                            category_opt += "<option value='" + v.id + "'>" + v.name + "</option>";
+                        });
+                    }
+                    $("#subcategory").html(category_opt);
+                });
+        });
+        //for subcategory end
+
+
         //for division start
         $.getJSON("assets/classes/division.php", function(data) {
             var division_opt = "";
@@ -161,6 +210,42 @@
                 });
         });
         //for area end
+
+        //submit book info start
+        $("#submitBtn").click(function(){
+            //get all form values in variables
+            let bookForm = document.getElementById('bookForm');
+            var bookInfo = new FormData(bookForm);
+            // 
+            $.ajax({
+          url: "classes/productAdd.php",
+          type: "POST",
+          data: bookInfo,
+          contentType: false,
+          cache: false,
+          processData: false,
+          success: function (data) {
+            data = JSON.parse(data);
+            console.log(data);
+            //return;
+            //alert(data);
+            if (!data.error) {
+              alert(data.message);
+              $("#productinsertform").hide(200);
+              $("#addproductbtn").show();
+              $("#updateproductbtn").hide();
+              clearform();
+              showProducts(0);
+            }
+            else{
+              alert(data.message);
+            }
+          }
+        });
+            // 
+
+        })
+        //submit book info end
     });
 </script>
 </body>

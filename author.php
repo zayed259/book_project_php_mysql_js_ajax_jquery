@@ -3,21 +3,7 @@ require "configuration.php";
 $page = "All Books";
 include 'assets/inc/header.php'; 
 ?>
-<div class="container my-1">
-    <div class="row">
-        <div class="col-lg-6">
-
-        </div>
-        <div class="col-lg-6">
-            <form>
-                <div class="input-group position-end">
-                    <input class="form-control me-2" type="search" placeholder="type here.." aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    <hr>
+<div class="container my-4">
     <div class="row">
         <div class="col-lg-3">
             <div class="accordion" id="accordionPanelsStayOpenExample">
@@ -647,12 +633,12 @@ include 'assets/inc/header.php';
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-8">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a class="text-decoration-none" href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a class="text-decoration-none" href="#">Library</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Data</li>
+                    <li class="breadcrumb-item"><a class="text-decoration-none" href="#">Author</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Humayon Ahmed</li>
                 </ol>
             </nav>
             <a href="view-product.php" class="text-decoration-none">
@@ -768,7 +754,7 @@ include 'assets/inc/header.php';
                 </div>
             </a>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-1">
 
         </div>
     </div>

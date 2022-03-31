@@ -1,7 +1,12 @@
-<?php 
+<!-- https://codepen.io/richardv/pen/JpwjeZ
+https://codepen.io/daveroma/pen/BmXMMQ -->
+
+<?php
 require "configuration.php";
 $page = "Home";
-include "assets/inc/header.php"; ?>
+include "assets/inc/header.php";
+
+?>
 <!-- carousel section -->
 <div class="container-fluid py-2 carousel">
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
@@ -78,25 +83,6 @@ include "assets/inc/header.php"; ?>
             </div>
         </div>
         <div class="row">
-            <div class="col-xl-3 col-sm-6 col-12">
-                <a href="#" class="text-decoration-none text-dark">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="align-self-center">
-                                        <i class="fa-solid fa-book font-large-2 float-left"></i>
-                                    </div>
-                                    <div class="text-center ps-2 ms-5">
-                                        <h5>Academic</h5>
-                                        <span>178 Books</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
             <div class="col-xl-3 col-sm-6 col-12">
                 <a href="#" class="text-decoration-none text-dark">
                     <div class="card">
