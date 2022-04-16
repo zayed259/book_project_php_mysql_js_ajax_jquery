@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2022 at 02:51 PM
+-- Generation Time: Apr 16, 2022 at 03:11 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -708,9 +708,49 @@ CREATE TABLE `bookposts` (
   `area_id` int(11) NOT NULL,
   `author_id` int(11) NOT NULL,
   `publications_id` int(11) NOT NULL,
+  `images` varchar(512) NOT NULL,
   `created` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `deleted` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `bookposts`
+--
+
+INSERT INTO `bookposts` (`id`, `name`, `details`, `price1`, `price2`, `type`, `user_id`, `category_id`, `subcategory_id`, `division_id`, `district_id`, `area_id`, `author_id`, `publications_id`, `images`, `created`, `deleted`) VALUES
+(6, 'Time Management', 'Time management books are guides that help readers organize tasks and use hours more effectively. These works cover topics such as organization, focus, and defeating procrastination. The purpose of these books is to help professionals arrange their work lives for optimal output and minimal stress.', '500.00', '0.00', 'used', 2, 19, 113, 1, 1, 18, 4, 27, '6248a3ffe429a8.47044891.jpg,6248a3ffe539f1.27557986.jpg,6248a3ffe54d85.25877676.jpg,6248a3ffe560d7.20402340.jpg', '2022-04-02 19:29:03', NULL),
+(7, 'Leadership', 'Leadership books are resources that teach leadership competencies, skills, and best practices. These works analyze which qualities great leaders share, and provide frameworks for building effective teams.', '450.00', '0.00', 'used', 2, 8, 86, 5, 45, 374, 20, 84, '6248a51c4c8de9.07570668.jpg,6248a51c4e2725.77238384.jpg,6248a51c4e3a97.57357648.jpg', '2022-04-02 19:33:48', NULL),
+(8, 'চরিত্রহীন', 'প্রি-অর্ডারের এই পণ্যটি 31 Mar 2022 তারিখে প্রকাশ পেতে পারে বলে প্রকাশনী থেকে জানানো হয়েছে। তবে দৈব দুর্বিপাক বা বিশেষ কোন কারণে প্রকাশিত হওয়ার তারিখ পরিবর্তন হতেও পারে।', '300.00', '0.00', 'new', 1, 10, 92, 5, 44, 368, 88, 58, '6248b0d40aa288.67903375.jpg,6248b0d40bf593.63858480.jpg,6248b0d40c05a5.62943127.png', '2022-04-02 20:23:48', NULL),
+(10, 'sacred path to islam', 'add more details', '350.00', '0.00', 'new', 4, 2, 21, 1, 2, 49, 13, 21, '624968ca7c6f33.96254781.jpg', '2022-04-03 09:28:42', NULL),
+(11, 'sacred path to islam', 'add more details', '350.00', '0.00', 'new', 4, 2, 21, 1, 2, 49, 13, 21, '624968ec500fc4.43639588.jpg', '2022-04-03 09:29:16', NULL),
+(12, 'summary of holy quran', 'add more ', '120.00', '0.00', 'used', 4, 2, 20, 4, 32, 286, 8, 23, '6249696c30c6e8.13608103.png', '2022-04-03 09:31:24', NULL),
+(13, 'Bcs math question bank', ' add in details', '250.00', '0.00', 'used', 4, 3, 70, 5, 43, 359, 16, 84, '62496a0c519141.13585605.jpg', '2022-04-03 09:34:04', NULL),
+(14, 'science', 'aRF4EUJ', '350.00', '0.00', 'new', 4, 3, 67, 2, 15, 141, 9, 123, '62496a8018bea9.30865581.jpg', '2022-04-03 09:36:00', NULL),
+(15, 'PCS', 'MATH RELATED', '350.00', '0.00', 'new', 4, 3, 65, 1, 2, 47, 9, 83, '62496b02c59b97.56091507.jpg', '2022-04-03 09:38:10', NULL),
+(16, 'JSC MATH', 'MATH BOOK', '120.00', '0.00', 'new', 4, 3, 66, 4, 32, 285, 11, 21, '62496bab805797.55482236.jpg', '2022-04-03 09:40:59', NULL),
+(17, 'HIMU ', 'UPONNAS', '1200.00', '0.00', 'new', 4, 6, 78, 5, 42, 349, 1, 7, '62496c492e72e4.93816836.jpg', '2022-04-03 09:43:37', NULL),
+(18, 'PODDA NODIR MAJHI', 'UPONNAS', '1200.00', '0.00', 'new', 4, 5, 76, 3, 27, 250, 60, 22, '62496cd4cea105.09155903.jpg', '2022-04-03 09:45:56', NULL),
+(19, 'Shakespeare Rachana Samagra', 'ROCHONA ', '12000.00', '0.00', 'new', 4, 5, 77, 5, 44, 367, 5, 23, '62496d8074d8f1.32230415.jpg', '2022-04-03 09:48:48', NULL),
+(20, 'Aaj Robibar', 'details', '300.00', '0.00', 'used', 2, 3, 69, 1, 7, 85, 12, 21, '624aaed26e5911.77073335.jpg,624aaed26fbbb5.99746471.png,624aaed26fc868.76897542.jpg', '2022-04-04 08:39:46', NULL),
+(21, 'A brief history of time', 'about the modern science', '650.00', '0.00', 'new', 3, 8, 84, 4, 32, 286, 90, 84, '6252906d0b3797.59050800.jpg', '2022-04-10 08:08:13', NULL),
+(22, 'Computer Science', 'Class 2 ', '60.00', '0.00', 'used', 4, 3, 65, 2, 22, 211, 4, 83, '6252908860e520.74678391.jpg', '2022-04-10 08:08:40', NULL),
+(23, 'the selfish gene', 'about science and fiction of modern era', '350.00', '0.00', 'used', 3, 8, 85, 7, 57, 478, 8, 78, '625290dd315e03.03705875.jpg', '2022-04-10 08:10:05', NULL),
+(24, 'Sey Somoy', 'Uponnas', '140.00', '0.00', 'used', 4, 1, 7, 4, 31, 281, 1, 23, '625291304a0fb4.54856221.jpg', '2022-04-10 08:11:28', NULL),
+(25, 'Travelling Home: Essays on Islam in Europe', 'In our age of globalisation and pandemic, how should we react to the new Islamophobic movements now spreading in the West? Everywhere the far right is on the march, with nationalist and populist parties thriving on the back of popular anxieties about Islam and the Muslim presence. Hijab and minaret bans, mosque shootings, hostility to migrants and increasingly scornful media stereotypes seem to endanger the prospects for friendly coexistence and the calm uplifting of Muslim populations. In this series of essays Abdal Hakim Murad dissects the rise of Islamophobia on the basis of Muslim theological tradition. Although the proper response to the current impasse is clearly indicated in Qur’an and Hadith, some have lost the principle of trust in divine wisdom and are responding with hatred, fearfulness or despair. Murad shows that a compassion-based approach, rooted in an authentic theology of divine power, could transform the current quagmire into a bright landscape of great promise for Muslims and their neighbor', '2500.00', '0.00', 'new', 6, 2, 39, 2, 18, 183, 4, 21, '6252913ae6c3d4.27770593.jpg', '2022-04-10 08:11:38', NULL),
+(26, 'Ses Bikel Er Meye', 'Novel Book', '160.00', '0.00', 'used', 4, 1, 2, 1, 4, 63, 41, 61, '625291c4852be2.28401887.jpg', '2022-04-10 08:13:56', NULL),
+(27, 'Del Kernigi Rachana Shomogro', 'Human psychology', '120.00', '0.00', 'used', 8, 19, 113, 2, 16, 148, 27, 54, '625291c7aaa4d6.45840087.jpg', '2022-04-10 08:13:59', NULL),
+(28, 'Maa', 'Motherhood', '120.00', '0.00', 'used', 8, 1, 10, 2, 16, 148, 57, 54, '62529234b1cf13.59701756.jpg', '2022-04-10 08:15:48', NULL),
+(29, 'Understanding the Four Madhhabs: The Facts about Ijtihad and Taqlid', 'Why four schools of thought? Is it necessary to follow one? Discussion on these and other questions. A great book for those confused about this subject. Because of the traditional pious fear of distorting the Law of Islam, the overwhelming majority of the great scholars of the past - certainly well over ninety-nine percent of them - have adhered loyally to a madhhab. It is true that in the troubled fourteenth century a handful of dissenters appeared, but even these individuals never recommended that semi-educated Muslims should attempt ijtihad without expert help.', '500.00', '0.00', 'new', 6, 2, 24, 2, 18, 183, 4, 21, '625292359079e0.66430379.jpg', '2022-04-10 08:15:49', NULL),
+(30, 'Dighir Jole Kar Chhowa', 'Bangla Uponnas', '250.00', '0.00', 'used', 4, 1, 3, 6, 50, 412, 1, 105, '62529270a77157.52239763.jpg', '2022-04-10 08:16:48', NULL),
+(31, 'SECRET GARDEN', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', '350.00', '0.00', 'used', 2, 10, 92, 1, 1, 5, 8, 24, '6252929247f372.13233647.jpg', '2022-04-10 08:17:22', NULL),
+(32, 'কুটু মিয়া', 'ফ্ল্যাপে লিখা কথা\r\nতার নাম কুটু মিয়া। বয়স চল্লিশ থেকে পঞ্চাশের মধ্যে। সে বাবুর্চি কাজ জানে। বাংলা , ইংলিশ, থাই, মোগলাই সব ধরনের রান্না পারে। পাইলট স্যার তাকে একটা সার্টিফিকেট দিয়েছেন। এই সার্টিফিকেট নিয়ে সে কাজ করতে এসেছে আলাউদ্দিন সাহেবের বাড়িতে।\r\nআলাউদ্দিন সাহেবের কুটু মিয়াকে পছন্দ হলো না। তাঁর নাম হলো কোথাও কোনো সমস্যা আছে। সমস্যা তিনি ধরতে পারছেন না।', '350.00', '0.00', 'used', 6, 10, 92, 1, 1, 12, 1, 72, '62529455af0f67.54951683.jpg', '2022-04-10 08:24:53', NULL),
+(33, 'Akas Zora Megh', 'Romantic Novel', '160.00', '0.00', 'used', 4, 1, 3, 7, 57, 478, 1, 21, '625294b5ee2eb7.58219792.jpg', '2022-04-10 08:26:29', NULL),
+(34, 'অক্টারিন', 'মার্ডার মিস্ট্রি হয়তো পড়েছেন আগে, কিন্তু পজেশন মিস্ট্রি ?\r\nকোন অশুভ শক্তির ছায়া পড়েছে দেশের অন্যতম প্রভাবশালী পরিবারের একমাত্র মেয়ের ওপর-- সে প্রশ্নের উত্তর খুঁজতে নিয়োগ করা হলো অদ্ভুত এক মানুষকে; অতিপ্রাকৃত ক্ষমতার সাথে যার আছে নিবিড়, তিক্ত অভিজ্ঞতা । কিন্তু তদন্তে ডুব দেবার পরই বুঝতে পারলো চোরাবালি আসলে কতোটা গভীর ।', '300.00', '0.00', 'used', 6, 10, 92, 1, 2, 47, 90, 83, '62529540cbc0d1.91732175.jpg', '2022-04-10 08:28:48', NULL),
+(35, 'Putul Nacher Itikotha', 'Bangla novel', '190.00', '0.00', 'used', 4, 1, 7, 5, 44, 367, 59, 7, '625295869bda51.89652543.png', '2022-04-10 08:29:58', NULL),
+(36, 'Aj Himur Biye', 'Bangla uponnas', '150.00', '0.00', 'used', 4, 1, 3, 6, 49, 407, 1, 23, '625296408969b5.75671049.jpg', '2022-04-10 08:33:04', NULL),
+(37, 'তারানাথ তান্ত্রিক', 'Collection of short Supernatural Tales. The narrator of these tales is Taranath Tantrik, a mystic figure and practitioner of occult. He is an astrologer by profession and had many encounters with the weird in his extensive travels. He shares these experiences with a few friends in his Mott lane house over cups of tea and cigarettes.', '400.00', '0.00', 'used', 6, 10, 92, 1, 13, 127, 49, 23, '625296bb16aa14.76558316.jpg', '2022-04-10 08:35:07', NULL),
+(38, 'পিশাচিনী', 'মুহম্মদ জাফর ইকবালের ভৌতিক গল্প সংকলন।\r\n\r\n*পিশাচিনী\r\n*রহমত চাচার একরাত\r\n*সহযাত্রী\r\n*বন্ধ ঘর\r\n*গাড়ি\r\n*মুগাবালী', '250.00', '0.00', 'used', 6, 10, 92, 8, 61, 502, 55, 23, '625298b8b32c34.83597589.jpg', '2022-04-10 08:43:36', NULL),
+(39, 'Putul Nacher Itikotha', 'Bangla novel', '190.00', '0.00', 'used', 4, 1, 7, 5, 44, 367, 59, 7, '625299e9869626.44464867.png', '2022-04-10 08:48:41', NULL);
 
 -- --------------------------------------------------------
 
@@ -751,7 +791,8 @@ INSERT INTO `categories` (`id`, `name`, `created`) VALUES
 (20, 'Cooking', '2022-03-31 10:16:37'),
 (21, 'Politics', '2022-03-31 10:16:41'),
 (22, 'Agriculture & Farmers', '2022-03-31 10:16:49'),
-(23, 'Computer, Freelancing and Programming', '2022-03-31 10:16:52');
+(23, 'Computer, Freelancing and Programming', '2022-03-31 10:16:52'),
+(42, 'test', '2022-04-02 10:31:38');
 
 -- --------------------------------------------------------
 
@@ -860,7 +901,32 @@ INSERT INTO `division` (`id`, `name`, `created`) VALUES
 (5, 'Rajshahi', '2022-03-23 07:03:56'),
 (6, 'Sylhet', '2022-03-23 07:03:56'),
 (7, 'Rangpur', '2022-03-23 07:03:56'),
-(8, 'Mymensingh', '2022-03-23 07:03:56');
+(8, 'Mymensingh', '2022-03-23 07:03:56'),
+(10, 'Chandpur', '2022-04-02 09:00:38'),
+(12, 'Rajbari', '2022-04-02 09:00:56'),
+(13, 'Test', '2022-04-02 09:29:00'),
+(14, 'Faridpur2222', '2022-04-04 08:41:59');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fav`
+--
+
+CREATE TABLE `fav` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `bookpost_id` int(11) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `fav`
+--
+
+INSERT INTO `fav` (`id`, `user_id`, `bookpost_id`, `created`) VALUES
+(1, 2, 39, '2022-04-16 09:04:57'),
+(3, 2, 38, '2022-04-16 09:05:36');
 
 -- --------------------------------------------------------
 
@@ -1242,7 +1308,12 @@ INSERT INTO `users` (`id`, `full_name`, `mobile`, `password`, `role`, `created`)
 (2, 'Tamimul Islam', '01912345678', '$2y$10$gOtE4AROe3SIVQuidzqJke32e.k.9Y3.mFblFpwL5YK/1ty7MXjuC', 1, '2022-03-22 18:02:06'),
 (3, 'Shariful Islam', '01712345678', '$2y$10$.GiuaJkvh3bpF07HxoTLGOJK6lL9mSboTuBtxY9.aNotfGuwctc2S', 2, '2022-03-22 18:02:18'),
 (4, 'Mohsin Ahmed', '01512345678', '$2y$10$sMjpc1p1CMNPxMtO4OSdyedsutmkwGEAYlBC8VmlDDMnfB2XsQR46', 1, '2022-03-22 18:02:28'),
-(5, 'Tasnim Al Rahman', '01812345678', '$2y$10$Zfa.22nTliappGnyIu8t4.3BHr9GZVzByusz/GpusgqetZFwDD7i2', 1, '2022-03-22 18:03:11');
+(5, 'Tasnim Al Rahman', '01812345678', '$2y$10$Zfa.22nTliappGnyIu8t4.3BHr9GZVzByusz/GpusgqetZFwDD7i2', 1, '2022-03-22 18:03:11'),
+(6, 'Adnan Hossine', '01670270120', '$2y$10$.D0KskUU7bsVMaEQFagAc.o24cxS8puvtSiY44il79ZSLURJJXo32', 1, '2022-04-10 08:05:44'),
+(8, 'Irin Binte Abbas', '01995793975', '$2y$10$dqcJkZMgA90pyCjRAji9EelSBbSLRZUgijK789hUQK/Wda0n76zjC', 1, '2022-04-10 08:10:26'),
+(10, 'Anjuman ', '01904325619', '$2y$10$6IoSNdyoUOVwDEGZmyubOOD2IX0txWn7ltQfowkI0IgkyC4feE1yG', 1, '2022-04-11 08:57:11'),
+(14, 'Mominul Islam', '01312345678', '$2y$10$G8LEJ9eZtmYIzNZHOde1ZeE617VJPwKURR9QlvLaT5rxbC42aUbnW', 1, '2022-04-11 08:59:49'),
+(15, 'Sadheen Hossain', '01911977900', '$2y$10$AbHqW3ZE/BVvKEtcm13gVe7fowikHa0KrOILSEtMOZnMt1cIWT5pK', 1, '2022-04-11 09:01:31');
 
 -- --------------------------------------------------------
 
@@ -1312,6 +1383,13 @@ ALTER TABLE `division`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `fav`
+--
+ALTER TABLE `fav`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `user_book` (`user_id`,`bookpost_id`);
+
+--
 -- Indexes for table `message`
 --
 ALTER TABLE `message`
@@ -1372,10 +1450,16 @@ ALTER TABLE `author`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
+-- AUTO_INCREMENT for table `bookposts`
+--
+ALTER TABLE `bookposts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+
+--
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `district`
@@ -1387,7 +1471,13 @@ ALTER TABLE `district`
 -- AUTO_INCREMENT for table `division`
 --
 ALTER TABLE `division`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `fav`
+--
+ALTER TABLE `fav`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `message`
@@ -1417,7 +1507,7 @@ ALTER TABLE `subcategories`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `usersprofile`
@@ -1454,12 +1544,6 @@ ALTER TABLE `bookposts`
 --
 ALTER TABLE `district`
   ADD CONSTRAINT `district_ibfk_1` FOREIGN KEY (`division_id`) REFERENCES `division` (`id`) ON UPDATE CASCADE;
-
---
--- Constraints for table `message`
---
-ALTER TABLE `message`
-  ADD CONSTRAINT `message_ibfk_1` FOREIGN KEY (`bookpost_id`) REFERENCES `bookposts` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `profile`

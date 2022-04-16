@@ -1,5 +1,7 @@
 <?php
-session_start();
+if(session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 $message = "";
 if (isset($_POST['signup'])) {
     require "connection.php";
@@ -30,14 +32,20 @@ if (isset($_POST['signup'])) {
 
 $message = "";
 if (isset($_POST['login'])) {
-    $mobileNum = $_POST['mobileNum'];
-    $password = $_POST['password'];
     require "connection.php";
+    $mobileNum = $conn->escape_string($_POST['mobileNum']);
+    $password = $conn->escape_string($_POST['password']);
+    $redirect = $_POST['redirect'];
+    
     $selectQuery = "SELECT * FROM users WHERE `mobile` = '" . $mobileNum . "' LIMIT 1";
+    echo $selectQuery;
     $result = $conn->query($selectQuery);
     if ($result->num_rows) {
+        // echo "hi";
+        // exit;
         $userinfo = $result->fetch_assoc();
         if (password_verify($password, $userinfo['password'])) {
+       
             $_SESSION['logged_in'] = true;
             $_SESSION['user_id'] = $userinfo['id'];
             $_SESSION['full_name'] = $userinfo['full_name'];
@@ -47,20 +55,24 @@ if (isset($_POST['login'])) {
                 header("location: admin/admin-dashboard.php");
             }
             elseif (isset($_SESSION['logged_in']) && $_SESSION['user_role'] == '1') {
-                header("location: users/my-profile.php");
+                if($redirect != ""){
+                    header("location: ".$redirect.".php");
+                }
+                else{
+                    header("location: users/my-profile.php");
+                }
             } else {
                 $message = "Login failed";
                 header("location: login.php");
             }
         } else {
-            $message = "Invalid mobile number or password";
+            $message = "Invalid mobile number or password 1";
         }
     } else {
-        $message = "Invalid mobile number or password";
+        $message = "Invalid mobile number or password 2";
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -76,9 +88,10 @@ if (isset($_POST['login'])) {
 <body>
     <div class="container">
         <div class="forms-container">
-            <div class="signin-signup">
+            <div class="signin-signup">                
                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" class="sign-in-form">
                     <h4><?php echo $message ?? ""; ?></h4>
+                    <input type="hidden" name="redirect" value="<?php echo $_GET['redirect']??""; ?>">
                     <h2 class="title">Sign in</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>

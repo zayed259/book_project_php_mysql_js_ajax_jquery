@@ -36,83 +36,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['user_role'] != '2') {
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="topNavBar">
-        <!-- <form class="d-flex ms-auto my-3 my-lg-0">
-          <div class="input-group">
-            <input class="form-control" type="search" placeholder="Search" aria-label="Search" />
-            <button class="btn btn-primary" type="submit">
-              <i class="bi bi-search"></i>
-            </button>
-          </div>
-        </form> -->
         <ul class="d-flex ms-auto navbar-nav navbar-align">
-          <!-- <li class="nav-item dropdown">
-            <a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown" data-bs-toggle="dropdown">
-              <div class="position-relative">
-              <i class="fa-solid fa-bell"></i>
-                <span class="indicator">4</span>
-              </div>
-            </a>
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0" aria-labelledby="alertsDropdown">
-              <div class="dropdown-menu-header">
-                4 New Notifications
-              </div>
-              <div class="list-group">
-                <a href="#" class="list-group-item">
-                  <div class="row g-0 align-items-center">
-                    <div class="col-2">
-                      <i class="text-danger" data-feather="alert-circle"></i>
-                    </div>
-                    <div class="col-10">
-                      <div class="text-dark">Update completed</div>
-                      <div class="text-muted small mt-1">Restart server 12 to complete the
-                        update.</div>
-                      <div class="text-muted small mt-1">30m ago</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="#" class="list-group-item">
-                  <div class="row g-0 align-items-center">
-                    <div class="col-2">
-                      <i class="text-warning" data-feather="bell"></i>
-                    </div>
-                    <div class="col-10">
-                      <div class="text-dark">Lorem ipsum</div>
-                      <div class="text-muted small mt-1">Aliquam ex eros, imperdiet vulputate
-                        hendrerit et.</div>
-                      <div class="text-muted small mt-1">2h ago</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="#" class="list-group-item">
-                  <div class="row g-0 align-items-center">
-                    <div class="col-2">
-                      <i class="text-primary" data-feather="home"></i>
-                    </div>
-                    <div class="col-10">
-                      <div class="text-dark">Login from 192.186.1.8</div>
-                      <div class="text-muted small mt-1">5h ago</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="#" class="list-group-item">
-                  <div class="row g-0 align-items-center">
-                    <div class="col-2">
-                      <i class="text-success" data-feather="user-plus"></i>
-                    </div>
-                    <div class="col-10">
-                      <div class="text-dark">New connection</div>
-                      <div class="text-muted small mt-1">Christina accepted your request.
-                      </div>
-                      <div class="text-muted small mt-1">14h ago</div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div class="dropdown-menu-footer">
-                <a href="#" class="text-muted">Show all notifications</a>
-              </div>
-            </div>
-          </li> -->
           <li class="nav-item dropdown">
             <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
               <i class="align-middle" data-feather="settings"></i>
@@ -159,6 +83,16 @@ if (isset($_SESSION['logged_in']) && $_SESSION['user_role'] != '2') {
             </div>
           </li>
           <li>
+            <a class="nav-link px-3 sidebar-link" href="division-table.php">
+              <span class="me-2"><i class="fa-solid fa-table"></i></span>
+              <span>Division Table</span>
+              <span class="ms-auto">
+                <span class="right-icon">
+                  <i class="bi bi-chevron-right"></i>
+                </span>
+              </span>
+            </a>
+
             <a class="nav-link px-3 sidebar-link" data-bs-toggle="collapse" href="#layouts2">
               <span class="me-2"><i class="fa-solid fa-table"></i></span>
               <span>Division Table</span>

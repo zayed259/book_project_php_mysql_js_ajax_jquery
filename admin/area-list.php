@@ -10,7 +10,7 @@ $conn->close();
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <h4>District List</h4>
+                <h4>Area List</h4>
             </div>
         </div>
         <div class="row">

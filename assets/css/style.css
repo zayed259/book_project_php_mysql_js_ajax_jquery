@@ -4,7 +4,7 @@
   font-family: Poppins;
 }
 .searchBar{
-    width: 600px;
+    width: 500px;
 }
 .carousel{
   background-color: #013220;
@@ -256,6 +256,3 @@ section {
 .sq_box span.wishlist i:hover {
   color: #fd7f34;
 }
-
-
-

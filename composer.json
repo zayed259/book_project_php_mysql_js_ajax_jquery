@@ -1,0 +1,12 @@
+{
+    "name": "wdpf/book_project_php_mysql_js_ajax_jquery",
+    "description": "public book library",
+    "type": "project",
+    "autoload": {
+        "psr-4": { "App\\": ["src/", "lib/"] },
+        "files": ["configuration.php","src/helpers.php","connection.php"]
+    },
+    "require": {
+        "nesbot/carbon": "^2.57"
+    }
+}

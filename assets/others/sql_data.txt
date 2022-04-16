@@ -56,14 +56,37 @@ CREATE TABLE `profile` (
 CREATE TABLE `usersprofile` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
-  `details` VARCHAR(512) NOT NULL,
-  `fbid` VARCHAR(255) NOT NULL,
-  `ytlink` VARCHAR(255) NOT NULL,
+  `division_id` INT NOT NULL,
+  `district_id` INT NOT NULL,
+  `area_id` INT NOT NULL,
+  `email` VARCHAR(100) NOT NULL,
+  `website` VARCHAR(100) NOT NULL,
+  `facebook` VARCHAR(100) NOT NULL,
+  `twitter` VARCHAR(100) NOT NULL,
+  `linkedin` VARCHAR(100) NOT NULL,
+  `education` VARCHAR(200) NOT NULL,
+  `job_designation` VARCHAR(200) NOT NULL,
   `profile_image` VARCHAR(200) NOT NULL,
+  `details` VARCHAR(512) NOT NULL,
   `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+id
+user_id
+division_id
+district_id
+area_id
+email
+website
+facebook
+twitter
+linkedin
+education
+job_designation
+profile_image
+details
+created
 
 
 
@@ -176,7 +199,7 @@ CREATE TABLE `subcategories`(
 --
 
 CREATE TABLE `bookposts` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `details` varchar(1024) NOT NULL,
   `price1` decimal(10,2) NOT NULL,
@@ -922,6 +945,7 @@ INSERT INTO `author` (`id`, `name`, `created`) VALUES
 (NULL,'Humayun Ahmed',NULL),
 (NULL,'Kazi Nazrul Islam',NULL),
 (NULL,'Rabindranath Tagore',NULL),
+(NULL,'Sukanto Bhattacharjo',NULL),
 (NULL,'Abdul Hakim',NULL),
 (NULL,'Abu Ishaque',NULL),
 (NULL,'Abul Mansur Ahmed',NULL),

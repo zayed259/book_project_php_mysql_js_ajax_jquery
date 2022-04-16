@@ -22,13 +22,15 @@
 
                         <!-- Grid column -->
                         <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-                            <h6 class="text-uppercase mb-4 font-weight-bold ">Products</h6>
+                            <h6 class="text-uppercase mb-4 font-weight-bold ">About Us</h6>
                             <p class="text-center">
-                                <a class="text-white text-decoration-none" href="#">All Books</a>
+                                <a class="text-white text-decoration-none" href="#">Award</a>
                             </p>
-
                             <p class="text-center">
-                                <a class="text-white text-decoration-none" href="#">Recent Books</a>
+                                <a class="text-white text-decoration-none" href="about_us.php">Our Team</a>
+                            </p>
+                            <p class="text-center">
+                                <a class="text-white text-decoration-none" href="#">Career</a>
                             </p>
                         </div>
                         <!-- Grid column -->
@@ -43,9 +45,9 @@
                             <h6 class="text-uppercase mb-4 font-weight-bold ">Contact</h6>
                             <p><i class="fas fa-envelope mr-3 text-start"></i> contact@isdbstudents.com</p>
                             <p><i class="fas fa-phone mr-3 text-start"></i> +8801711223344</p>
-                            <p class="text-center">
-                                <a class="text-white text-decoration-none" href="#">About Us</a>
-                            </p>
+                            <!-- <p class="text-center">
+                                <a class="text-white text-decoration-none" href="about_us.php">About Us</a>
+                            </p> -->
                         </div>
                         <!-- Grid column -->
 
@@ -90,7 +92,7 @@
     <!-- footer end -->
 
 
-    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/jquery-3.6.0.min.js"></script>
     <script src="assets/js/owl.carousel.min.js"></script>
     <script src="assets/js/owl-carousel.js"></script>

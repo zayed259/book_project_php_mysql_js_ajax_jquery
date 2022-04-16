@@ -9,8 +9,8 @@
       <div class="col-lg-4">
         <div class="card mb-4">
           <div class="card-body text-center">
-            <img src="../assets/images/shariful01.jpg" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-            <h5 class="my-3">md Shariful Islam</h5>
+            <img src="../assets/images/shariful01.jpg" alt="avatar" class="rounded-circle img-fluid" style="width: 150px; height: 150px">
+            <h5 class="my-3"><?php if (isset($_SESSION['full_name'])) echo "{$_SESSION['full_name']}"; ?></h5>
             <p class="text-muted mb-1">Full Stack Developer</p>
             <p class="text-muted mb-4">Dhaka, Bangladesh</p>
             <div class="d-flex justify-content-center mb-2">

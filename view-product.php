@@ -2,49 +2,66 @@
 require "configuration.php";
 $page = "Book Details";
 include 'assets/inc/header.php';
-?>
-<!-- <div class="container ">
-    <div class="row">
-        <div class="col-9 position_center">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Library</a></li>
-                    <li class="breadcrumb-item active">Data</li>
-                </ol>
-            </nav>
-            <div>
-                <h2>Retro</h2>
-            </div>
-            <div>
-                <h6>Posted on 14 Mar 12:18 am, Noakhali, Chattogram Division</h6>
-            </div>
+require 'connection.php';
+if (isset($_GET['post_id'])) {
+    $postid = $conn->escape_string($_GET['post_id']);
+    $sql = "SELECT `bookposts`.*, `author`.`name` AS `author_name`, `division`.`name` AS `division_name`, `district`.`name` AS `district_name`, `area`.`name` AS `area_name`, `categories`.`name` AS `category_name`, `subcategories`.`name` AS `subcategory_name`, `users`.`mobile` AS `users_number`  FROM `bookposts`, `author`, `division`, `district`, `area`, `categories`, `subcategories`, `users` WHERE`bookposts`.`author_id` = `author`.`id` AND `bookposts`.`division_id` = `division`.`id` AND `bookposts`.`district_id` = `district`.`id` AND `bookposts`.`area_id` = `area`.`id` AND `bookposts`.`category_id` = `categories`.`id` AND `bookposts`.`subcategory_id` = `subcategories`.`id` AND `bookposts`.`user_id` = `users`.`id` AND `id` = '$postid'";
+} else {
+    exit;
+}
+$result = $conn->query($sql);
+$html = "";
+while ($row = $result->fetch_assoc()) {
+    $firstImage = explode(",",$row['images'])[0];
+    $bookname = $row['name'];
+    $bookauthor = $row['author_name'];
+    $bookdivision = $row['division_name'];
+    $bookdistrict = $row['district_name'];
+    $bookarea = $row['area_name'];
+    $bookprice = $row['price1'];
+    $bookdescription = $row['details'];
+    $bookcategory = $row['category_name'];
+    $booksubcategory = $row['subcategory_name'];
+    $bookimage = $row['image'];
+    $price = $row['price1'];
+    $bookusermobile = $row['users_number'];
 
-            <img src="assets/images/book-10.png" alt="" height="400px" width="400px">
-            <div>
-                <h2>TK: 280</h2>
-            </div>
-            <div><b>Condition:</b> Used</div>
-            <div><b>Category:</b> Horror</div>
-            <div><b>Author:</b> Humayun Ahmed</div>
-            <div><b>Publication:</b> Janani Publications</div>
 
-            <p><b>Description:</b> Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad neque saepe qui similique
-                perferendis repudiandae. Libero, possimus. Amet unde illo itaque enim consectetur nulla quos
-                reiciendis aut, voluptas nostrum tempore.
-                Hic veniam facilis voluptas vero rem quo sequi cumque, repellendus debitis quas? Unde quisquam vero
-                fugit molestias ab, explicabo veniam voluptas adipisci. Exercitationem quae atque fugit labore neque
-                dolores accusamus.</p>
+    $html .= '<div class="wrapper row">
+    <div class="preview col-md-4">
+        <div class="preview-pic tab-content">
+            <div class="tab-pane active" id="pic-1"><img src="assets/upload_images/'.$firstImage.'" /></div>
+            <div class="tab-pane" id="pic-2"><img src="assets/images/book-2.png" /></div>
+            <div class="tab-pane" id="pic-3"><img src="assets/images/book-3.png" /></div>
+            <div class="tab-pane" id="pic-4"><img src="assets/images/book-4.png" /></div>
+            <div class="tab-pane" id="pic-5"><img src="assets/images/book-5.png" /></div>
         </div>
-        <div class="col-3  mt-5">
-            <div><i class="fa-solid fa-share-nodes"></i> <span>SHARE</span></div>
-            <div>For sell by <a href="#" class="text-decoration-none"><b>Tamima</b></a></div>
-            <div><button class="btn btn-primary my-1"><i class="fa-solid fa-phone m-2"></i>017XXXXXXXX</button></div>
-            <div><button class="btn btn-primary my-1"><i class="fa-solid fa-heart m-2"></i> Wishlist</button></div>
-            <div><button class="btn btn-primary my-1"><i class="fa-solid fa-comments m-2"></i></button></div>
+        <ul class="preview-thumbnail nav nav-tabs">
+            <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="assets/images/book-1.png" /></a></li>
+            <li><a data-target="#pic-2" data-toggle="tab"><img src="assets/images/book-2.png" /></a></li>
+            <li><a data-target="#pic-3" data-toggle="tab"><img src="assets/images/book-3.png" /></a></li>
+            <li><a data-target="#pic-4" data-toggle="tab"><img src="assets/images/book-4.png" /></a></li>
+            <li><a data-target="#pic-5" data-toggle="tab"><img src="assets/images/book-5.png" /></a></li>
+        </ul>
+
+    </div>
+    <div class="details col-md-6">
+        <h3 class="product-title">'.$bookname.'</h3>
+        <div><b>Author:</b> ' .$bookauthor.'</div>
+        <div><b>Category:</b> ' .$bookcategory.'</div>
+        <div><b>Subcategory:</b> ' .$booksubcategory.'</div>
+        <p id="details" class="product-description"></p>
+        <h4 class="price">Price: <span>TK: ' .$price.'</span></h4>
+        <div>
+            <button class="btn btn-primary my-1"><i class="fa-solid fa-phone m-2"></i>'.$bookusermobile.'</button>
+            <button class="btn btn-primary my-1"><i class="fa-solid fa-comments m-2"></i></button>
+            <button class="btn btn-primary my-1"><i class="fa-solid fa-heart m-2"></i></button>
         </div>
     </div>
-</div> -->
+</div>';
+}
+
+?>
 <style>
     /*****************globals*************/
     body {
@@ -187,10 +204,12 @@ include 'assets/inc/header.php';
         color: #fff;
         transition: background .3s ease;
     }
-p#details{
-    border: 1px solid gray;
-    padding: 5px;
-}
+
+    p#details {
+        border: 1px solid gray;
+        padding: 5px;
+    }
+
     .add-to-cart:hover,
     .like:hover {
         background: #b36800;
@@ -242,7 +261,6 @@ p#details{
         <div class="container-fliud">
             <div class="wrapper row">
                 <div class="preview col-md-4">
-
                     <div class="preview-pic tab-content">
                         <div class="tab-pane active" id="pic-1"><img src="assets/images/Aaj_Robibar_cover.jpg" /></div>
                         <div class="tab-pane" id="pic-2"><img src="assets/images/book-2.png" /></div>
@@ -264,15 +282,6 @@ p#details{
                     <div><b>Author:</b> Humayun Ahmed</div>
                     <div><b>Category:</b> Novel</div>
                     <div><b>Subcategory:</b> Romantic</div>
-                    <!-- <div class="rating">
-                        <div class="stars">
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                        </div>
-                        <span class="review-no">41 reviews</span>
                     </div> -->
                     <p id="details" class="product-description">A drama about the daily comic incidents taking place in a Dhaka household, the series' opening episode begins with Konka, the younger granddaughter who breaks the fourth wall to introduce characters and premises to the audience. She and her elder sister Titli are fun-loving girls, both secretly in love with the boarder Anis, a nerd who doesn't seem to understand social stuff and never shows affection for any of them. Their father Jamil, the middle son and an architect by profession, is fond of Hason Raja songs and after losing his wife around the time when Konka was born, falls in love with an attractive, mature and intelligent woman named Meera, whom he hires as a governess.</p>
                     <h4 class="price">current price: <span>TK: 180</span></h4>
@@ -282,11 +291,6 @@ p#details{
                         <button class="btn btn-primary my-1"><i class="fa-solid fa-comments m-2"></i></button>
                         <button class="btn btn-primary my-1"><i class="fa-solid fa-heart m-2"></i></button>
                     </div>
-                    <!-- <div class="action">
-                        <button class="add-to-cart btn btn-default" type="button">add to cart</button>
-                        <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
-                    </div> -->
-
                 </div>
             </div>
         </div>

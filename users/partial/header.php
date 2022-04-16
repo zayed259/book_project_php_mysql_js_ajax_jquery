@@ -16,6 +16,17 @@ if (session_status() === PHP_SESSION_NONE) {
     <link rel="stylesheet" href="../assets/css/dashboard.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <title>Boikhujo.com</title>
+    <style>
+         .bookimage img:hover {
+            transform: scale(1.1);
+        }
+
+        img.img-fluid {
+            height: 200px;
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+    </style>
 </head>
 
 <body>
@@ -35,16 +46,16 @@ if (session_status() === PHP_SESSION_NONE) {
                         <a class="nav-link" aria-current="page" href="../all-products.php">All Books</a>
                     </li>
                 </ul>
-                <form class="d-flex">
+                <!-- <form class="d-flex">
                     <div class="input-group searchBar">
                         <input class="form-control me-2" type="search" placeholder="type here.." aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </div>
-                </form>
+                </form> -->
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item adPost">
+                    <!-- <li class="nav-item adPost">
                         <a class="nav-link btn btn-success text-dark ms-lg-4" role="button" aria-current="page" href="#">Post Your Ad</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item dropdown">
                         <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
                             <i class="align-middle" data-feather="settings"></i>

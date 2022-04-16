@@ -34,4 +34,10 @@ $items_per_row_desktop_xlarge = 12;
 $items_per_row_desktop_xxlarge = 12;
 $items_per_row_desktop_xxxlarge = 12;
 $items_per_row_desktop_xxxxlarge = 12;
+
+// database info
+$sitename = "localhost";
+$username = "root";
+$password = "";
+$database = "boikhujo";
 ?>

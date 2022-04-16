@@ -1,10 +1,79 @@
-<!-- https://codepen.io/richardv/pen/JpwjeZ
-https://codepen.io/daveroma/pen/BmXMMQ -->
-
 <?php
 require "configuration.php";
 $page = "Home";
 include "assets/inc/header.php";
+
+require "connection.php";
+//bookposts table and join with category table
+$query = "SELECT `bookposts`.`id` AS `id`, `categories`.`name` AS `category_name`, `categories`.`id` AS `category_id`, count(*) as `total` FROM `bookposts`, `categories` WHERE `bookposts`.`category_id` = `categories`.`id` GROUP BY `category_id` ORDER BY `category_id` ASC";
+$result = $conn->query($query);
+//category
+$html = '';
+while ($row = $result->fetch_assoc()) {
+    $name = $row['category_name'];
+    $id = $row['category_id'];
+    $total = $row['total'];
+    $html .= '<div class="col-xl-3 col-sm-6 col-12 g-2">
+                <a href="sub_category.php?category=' .  $id . '" class="text-decoration-none text-dark">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="align-self-center fs-1">
+                                        <i class="fa-solid fa-book font-large-2 float-left"></i>
+                                    </div>
+                                    <div class="align-self-center ms-5">
+                                        <h5 class="textOverflow" title="' . $name . '">' . substr($name, 0, 20) . '</h5>
+                                        <span>' . $total . ' Books</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>';
+}
+
+// $query2 = "SELECT `category_id`, COUNT(*) AS `Total` FROM `bookposts` WHERE 1 GROUP BY `category_id`";
+// $result2 = $conn->query($query2);
+
+
+//select category_id, count(*) as total from bookposts where 1 group by `category_id`;
+
+//recent posts
+$sql = "SELECT `bookposts`.*, `author`.`name` AS `author_name`, `division`.`name` AS `division_name`, `district`.`name` AS `district_name`, `area`.`name` AS `area_name` FROM `bookposts`, `author`, `division`, `district`, `area` WHERE`bookposts`.`author_id` = `author`.`id` AND `bookposts`.`division_id` = `division`.`id` AND `bookposts`.`district_id` = `district`.`id` AND `bookposts`.`area_id` = `area`.`id` ORDER BY `id` DESC limit 10";
+$recentresult = $conn->query($sql);
+$recentpost = "";
+while ($recentrow = $recentresult->fetch_assoc()) {
+    $firstImage = explode(",", $recentrow['images'])[0];
+    $name = $recentrow['name'];
+    $price = $recentrow['price1'];
+    $id = $recentrow['id'];
+
+    $recentpost .= '<div class="item">
+    <div class="sq_box shadow">
+        <div class="pdis_img">
+            <span class="wishlist">
+                <a alt="Add to Wish List" title="Add to Wish List" href="javascript:void(0);"> <i class="fa fa-heart"></i></a>
+            </span>
+            <a href="details.php?id=' . $id . '">
+                <img src="assets/upload_images/' . $firstImage . '">
+            </a>
+        </div>
+        <h4 class="mb-1" title="' . $name . '"> <a href="details.php?id=' . $id . '"> ' . substr($recentrow['name'], 0, 20) . ' </a> </h4>
+        <div class="price-box mb-2">
+            <!-- <span class="price"> Price 200 </span> -->
+            <span class="offer-price">Price ' . $price . ' </span>
+        </div>
+        <div class="btn-box text-center">
+            <a class="btn btn-sm" href="details.php?id=' . $id . '"><i class="fa-solid fa-binoculars"></i> View Details </a>
+        </div>
+    </div>
+</div>';
+}
+
+
+
 
 ?>
 <!-- carousel section -->
@@ -75,358 +144,15 @@ include "assets/inc/header.php";
 <!-- carousel end -->
 
 <!-- category start -->
-<div class="grey-bg container-fluid">
-    <section id="minimal-statistics">
-        <div class="row">
-            <div class="col-12 mt-3 mb-1">
-                <h4 class="text-uppercase">Categories</h4>
-            </div>
+<div class="grey-bg container-fluid mt-1">
+    <div class="row">
+        <div class="col-12 mb-1">
+            <h4 class="text-uppercase">Categories</h4>
         </div>
-        <div class="row">
-            <div class="col-xl-3 col-sm-6 col-12">
-                <a href="#" class="text-decoration-none text-dark">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="align-self-center">
-                                        <i class="fa-solid fa-book font-large-2 float-left"></i>
-                                    </div>
-                                    <div class="text-center ms-5">
-                                        <h5>Job Seeker</h5>
-                                        <span>178 Books</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-xl-3 col-sm-6 col-12">
-                <a href="#" class="text-decoration-none text-dark">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="align-self-center">
-                                        <i class="fa-solid fa-book font-large-2 float-left"></i>
-                                    </div>
-                                    <div class="text-center ps-2 ms-5">
-                                        <h5>Adventure</h5>
-                                        <span>178 Books</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-xl-3 col-sm-6 col-12">
-                <a href="#" class="text-decoration-none text-dark">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="align-self-center">
-                                        <i class="fa-solid fa-book font-large-2 float-left"></i>
-                                    </div>
-                                    <div class="text-center ps-5 ms-5">
-                                        <h5>Drama</h5>
-                                        <span>178 Books</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-xl-3 col-sm-6 col-12">
-                <a href="#" class="text-decoration-none text-dark">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="align-self-center">
-                                        <i class="fa-solid fa-book font-large-2 float-left"></i>
-                                    </div>
-                                    <div class="text-center ps-3 ms-5">
-                                        <h5>Tragedy</h5>
-                                        <span>178 Books</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-xl-3 col-sm-6 col-12">
-                <a href="#" class="text-decoration-none text-dark">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="align-self-center">
-                                        <i class="fa-solid fa-book font-large-2 float-left"></i>
-                                    </div>
-                                    <div class="text-center ps-5 ms-5">
-                                        <h5>Poetry</h5>
-                                        <span>178 Books</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-xl-3 col-sm-6 col-12">
-                <a href="#" class="text-decoration-none text-dark">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="align-self-center">
-                                        <i class="fa-solid fa-book font-large-2 float-left"></i>
-                                    </div>
-                                    <div class="text-center ps-5 ms-5">
-                                        <h5>Science</h5>
-                                        <span>178 Books</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-xl-3 col-sm-6 col-12">
-                <a href="#" class="text-decoration-none text-dark">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="align-self-center">
-                                        <i class="fa-solid fa-book font-large-2 float-left"></i>
-                                    </div>
-                                    <div class="text-center ps-5 ms-5">
-                                        <h5>Fiction</h5>
-                                        <span>178 Books</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-xl-3 col-sm-6 col-12">
-                <a href="#" class="text-decoration-none text-dark">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="align-self-center">
-                                        <i class="fa-solid fa-book font-large-2 float-left"></i>
-                                    </div>
-                                    <div class="text-center ps-4 ms-5">
-                                        <h5>Romantic</h5>
-                                        <span>178 Books</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-xl-3 col-sm-6 col-12">
-                <a href="#" class="text-decoration-none text-dark">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="align-self-center">
-                                        <i class="fa-solid fa-book font-large-2 float-left"></i>
-                                    </div>
-                                    <div class="text-center ps-5 ms-5">
-                                        <h5>Horror</h5>
-                                        <span>178 Books</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-xl-3 col-sm-6 col-12">
-                <a href="#" class="text-decoration-none text-dark">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="align-self-center">
-                                        <i class="fa-solid fa-book font-large-2 float-left"></i>
-                                    </div>
-                                    <div class="text-center ps-5 ms-5">
-                                        <h5>History</h5>
-                                        <span>178 Books</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-xl-3 col-sm-6 col-12">
-                <a href="#" class="text-decoration-none text-dark">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="align-self-center">
-                                        <i class="fa-solid fa-book font-large-2 float-left"></i>
-                                    </div>
-                                    <div class="text-center ms-5">
-                                        <h5>Business Studies</h5>
-                                        <span>178 Books</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-xl-3 col-sm-6 col-12">
-                <a href="#" class="text-decoration-none text-dark">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="align-self-center">
-                                        <i class="fa-solid fa-book font-large-2 float-left"></i>
-                                    </div>
-                                    <div class="text-center ps-5 ms-5">
-                                        <h5>Magazine</h5>
-                                        <span>178 Books</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-xl-3 col-sm-6 col-12">
-                <a href="#" class="text-decoration-none text-dark">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="align-self-center">
-                                        <i class="fa-solid fa-book font-large-2 float-left"></i>
-                                    </div>
-                                    <div class="text-center ms-4">
-                                        <h5>General Knoledge</h5>
-                                        <span>178 Books</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-xl-3 col-sm-6 col-12">
-                <a href="#" class="text-decoration-none text-dark">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="align-self-center">
-                                        <i class="fa-solid fa-book font-large-2 float-left"></i>
-                                    </div>
-                                    <div class="text-center ps-5 ms-5">
-                                        <h5>Sports</h5>
-                                        <span>178 Books</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-xl-3 col-sm-6 col-12">
-                <a href="#" class="text-decoration-none text-dark">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="align-self-center">
-                                        <i class="fa-solid fa-book font-large-2 float-left"></i>
-                                    </div>
-                                    <div class="text-center ms-5">
-                                        <h5>Health & Fitness</h5>
-                                        <span>178 Books</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-xl-3 col-sm-6 col-12">
-                <a href="#" class="text-decoration-none text-dark">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="align-self-center">
-                                        <i class="fa-solid fa-book font-large-2 float-left"></i>
-                                    </div>
-                                    <div class="text-center ps-5 ms-5">
-                                        <h5>Journal</h5>
-                                        <span>178 Books</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-xl-3 col-sm-6 col-12">
-                <a href="#" class="text-decoration-none text-dark">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="align-self-center">
-                                        <i class="fa-solid fa-book font-large-2 float-left"></i>
-                                    </div>
-                                    <div class="text-center ps-5 ms-5">
-                                        <h5>Travel</h5>
-                                        <span>178 Books</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-xl-3 col-sm-6 col-12">
-                <a href="#" class="text-decoration-none text-dark">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="align-self-center">
-                                        <i class="fa-solid fa-book font-large-2 float-left"></i>
-                                    </div>
-                                    <div class="text-center ps-5 ms-5">
-                                        <h5>Philosophy</h5>
-                                        <span>178 Books</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
+    </div>
+    <div class="row">
+        <?php echo $html ?? ""; ?>
+    </div>
 </div>
 <!-- category end -->
 
@@ -441,146 +167,7 @@ include "assets/inc/header.php";
         <div class="row">
             <div class="col-md-12 list-slider mt-4">
                 <div class="owl-carousel common_wd  owl-theme" id="recent_post">
-                    <div class="item">
-                        <div class="sq_box shadow">
-                            <div class="pdis_img">
-                                <span class="wishlist">
-                                    <a alt="Add to Wish List" title="Add to Wish List" href="javascript:void(0);"> <i class="fa fa-heart"></i></a>
-                                </span>
-                                <a href="#">
-                                    <img src="assets/images/book-1.png">
-                                </a>
-                            </div>
-                            <h4 class="mb-1"> <a href="details.php"> The Art City </a> </h4>
-                            <div class="price-box mb-2">
-                                <!-- <span class="price"> Price 200 </span> -->
-                                <span class="offer-price">Price 120 </span>
-                            </div>
-                            <div class="btn-box text-center">
-                                <a class="btn btn-sm" href="javascript:void(0);"><i class="fa-solid fa-binoculars"></i> View Details </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="sq_box shadow">
-                            <div class="pdis_img">
-                                <span class="wishlist">
-                                    <a alt="Add to Wish List" title="Add to Wish List" href="javascript:void(0);"> <i class="fa fa-heart"></i></a>
-                                </span>
-                                <a href="#">
-                                    <img src="assets/images/book-2.png">
-                                </a>
-                            </div>
-                            <h4 class="mb-1"> <a href="details.php"> Give Thanks in Everything </a> </h4>
-                            <div class="price-box mb-2">
-                                <!-- <span class="price"> Price <i class="fa fa-inr"></i> 200 </span> -->
-                                <span class="offer-price"> Price 120 </span>
-                            </div>
-                            <div class="btn-box text-center">
-                                <a class="btn btn-sm" href="javascript:void(0);"> <i class="fa-solid fa-binoculars"></i> View Details </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="sq_box shadow">
-                            <div class="pdis_img">
-                                <span class="wishlist">
-                                    <a alt="Add to Wish List" title="Add to Wish List" href="javascript:void(0);"> <i class="fa fa-heart"></i></a>
-                                </span>
-                                <a href="#">
-                                    <img src="assets/images/book-3.png">
-                                </a>
-                            </div>
-                            <h4 class="mb-1"> <a href="#"> Roktakto Prantor </a> </h4>
-                            <div class="price-box mb-2">
-                                <!-- <span class="price"> Price <i class="fa fa-inr"></i> 200 </span> -->
-                                <span class="offer-price"> Price 120 </span>
-                            </div>
-                            <div class="btn-box text-center">
-                                <a class="btn btn-sm" href="javascript:void(0);"> <i class="fa-solid fa-binoculars"></i> View Details </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="sq_box shadow">
-                            <div class="pdis_img">
-                                <span class="wishlist">
-                                    <a alt="Add to Wish List" title="Add to Wish List" href="javascript:void(0);"> <i class="fa fa-heart"></i></a>
-                                </span>
-                                <a href="#">
-                                    <img src="assets/images/book-4.png">
-                                </a>
-                            </div>
-                            <h4 class="mb-1"> <a href="#"> Romeo Juliet </a> </h4>
-                            <div class="price-box mb-2">
-                                <!-- <span class="price"> Price <i class="fa fa-inr"></i> 200 </span> -->
-                                <span class="offer-price"> Price 120 </span>
-                            </div>
-                            <div class="btn-box text-center">
-                                <a class="btn btn-sm" href="javascript:void(0);"> <i class="fa-solid fa-binoculars"></i> View Details </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="sq_box shadow">
-                            <div class="pdis_img">
-                                <span class="wishlist">
-                                    <a alt="Add to Wish List" title="Add to Wish List" href="javascript:void(0);"> <i class="fa fa-heart"></i></a>
-                                </span>
-                                <a href="#">
-                                    <img src="assets/images/book-5.png">
-                                </a>
-                            </div>
-                            <h4 class="mb-1"> <a href="details.php"> Merchant of Venice </a> </h4>
-                            <div class="price-box mb-2">
-                                <!-- <span class="price"> Price <i class="fa fa-inr"></i> 200 </span> -->
-                                <span class="offer-price"> Price 120 </span>
-                            </div>
-                            <div class="btn-box text-center">
-                                <a class="btn btn-sm" href="javascript:void(0);"> <i class="fa-solid fa-binoculars"></i> View Details </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="sq_box shadow">
-                            <div class="pdis_img">
-                                <span class="wishlist">
-                                    <a alt="Add to Wish List" title="Add to Wish List" href="javascript:void(0);"> <i class="fa fa-heart"></i></a>
-                                </span>
-                                <a href="#">
-                                    <img src="assets/images/book-6.png">
-                                </a>
-                            </div>
-                            <h4 class="mb-1"> <a href="details.php"> Othello </a> </h4>
-                            <div class="price-box mb-2">
-                                <!-- <span class="price"> Price <i class="fa fa-inr"></i> 200 </span> -->
-                                <span class="offer-price"> Price 120 </span>
-                            </div>
-                            <div class="btn-box text-center">
-                                <a class="btn btn-sm" href="javascript:void(0);"> <i class="fa-solid fa-binoculars"></i> View Details </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="sq_box shadow">
-                            <div class="pdis_img">
-                                <span class="wishlist">
-                                    <a alt="Add to Wish List" title="Add to Wish List" href="javascript:void(0);"> <i class="fa fa-heart"></i></a>
-                                </span>
-                                <a href="#">
-                                    <img src="assets/images/book-7.png">
-                                </a>
-                            </div>
-                            <h4 class="mb-1"> <a href="details.php"> Hamlet </a> </h4>
-                            <div class="price-box mb-2">
-                                <!-- <span class="price"> Price <i class="fa fa-inr"></i> 200 </span> -->
-                                <span class="offer-price"> Price 120 </span>
-                            </div>
-                            <div class="btn-box text-center">
-                                <a class="btn btn-sm" href="javascript:void(0);"> <i class="fa-solid fa-binoculars"></i> View Details </a>
-                            </div>
-                        </div>
-                    </div>
+                    <?php echo $recentpost ?? ""; ?>
                 </div>
             </div>
         </div>

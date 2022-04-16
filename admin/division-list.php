@@ -17,13 +17,21 @@ $conn->close();
             <div class="col-md-12 mb-3">
                 <div class="card">
                     <div class="card-header">
-                        <span><i class="bi bi-table me-2"></i></span> Data Table
+                        <span>
+                            <span><i class="bi bi-table me-2"></i></span> Data Table
+                        </span>
+                        <span>
+                            <button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#completeModal">
+                                <i class="fa fa-plus"></i> Add New
+                            </button>
+                        </span>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="example" class="table table-striped data-table" style="width: 100%">
                                 <thead>
                                     <tr>
+                                        <th>Serial</th>
                                         <th>#</th>
                                         <th>Name</th>
                                         <th>Action</th>
@@ -31,17 +39,22 @@ $conn->close();
                                 </thead>
                                 <tbody>
                                     <?php
-                                        while($row = $result->fetch_assoc()){
-                                            echo "<tr>";
-                                            echo "<td>". $row['id'] . "</td>";
-                                            echo "<td>". $row['name'] . "</td>";
-                                            echo "<td><button class='btn btn-primary'><i class='fa-solid fa-pen-to-square'></i> Edit</button> <button class='btn btn-danger'> <i class='fa-solid fa-trash-can'></i> Delete</button></td>";
-                                        }
+                                      $serial = 1;
+                                    while ($row = $result->fetch_assoc()) {
+                                        echo "<tr>";
+                                        echo "<td>".$serial."</td>";
+                                        echo "<td>" . $row['id'] . "</td>";
+                                        echo "<td>" . $row['name'] . "</td>";
+                                        echo "<td><button class='btn btn-primary'><i class='fa-solid fa-pen-to-square'></i> Edit</button> <button class='btn btn-danger'> <i class='fa-solid fa-trash-can'></i> Delete</button></td>";
+                                        $serial++;
+                                    }
+
                                     ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>Id</th>
+                                        <th>Serial</th>
+                                        <th>#</th>
                                         <th>Name</th>
                                         <th>Action</th>
                                     </tr>
@@ -56,25 +69,6 @@ $conn->close();
 </main>
 <?php require "partial/footer.php" ?>
 <script>
-    $(document).ready(function() {
-        //add
-        $('#add').click(function() {
-           
-        });
-
-        //edit
-        $('#edit').click(function() {
-           
-        });
-
-        //delete
-        $('#delete').click(function() {
-           
-        });
-
-
-        //show
-        } );
 </script>
 </body>
 
