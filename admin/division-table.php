@@ -101,7 +101,7 @@ $conn->close();
     }
     //add function
     function addDivision() {
-        if($('#completeName').val() == ''){
+        if ($('#completeName').val() == '') {
             alert('Please enter division name');
             return false;
         }

@@ -11,9 +11,15 @@ if (isset($_GET['id'])) {
     exit;
 }
 $result = $conn->query($sql);
-$html = "";
+$html = '';
 while ($row = $result->fetch_assoc()) {
-    $firstImage = explode(",",$row['images'])[0];
+    $images = explode(',', $row['images']);
+    $ul = '<ul class="preview-thumbnail nav nav-tabs">';
+    foreach ($images as $img) {
+        $ul .= '<li><a href="javascript:void(0)" class="imgthumb" data-img="' . $img . '"><img src="assets/upload_images/' . $img . '" /></a></li>';
+    }
+    $ul .= '</ul>';
+
     $bookname = $row['name'];
     $bookauthor = $row['author_name'];
     $bookdivision = $row['division_name'];
@@ -23,7 +29,6 @@ while ($row = $result->fetch_assoc()) {
     $bookdescription = $row['details'];
     $bookcategory = $row['category_name'];
     $booksubcategory = $row['subcategory_name'];
-    // $bookimage = $row['image'];
     $price = $row['price1'];
     $bookusermobile = $row['users_number'];
     $bookpublications = $row['publications_name'];
@@ -32,33 +37,25 @@ while ($row = $result->fetch_assoc()) {
     $html .= '<div class="wrapper row">
     <div class="preview col-md-4">
         <div class="preview-pic tab-content">
-            <div class="tab-pane active" id="pic-1"><img src="assets/upload_images/'.$firstImage.'" /></div>
-            <div class="tab-pane" id="pic-2"><img src="assets/images/book-2.png" /></div>
-            <div class="tab-pane" id="pic-3"><img src="assets/images/book-3.png" /></div>
-            <div class="tab-pane" id="pic-4"><img src="assets/images/book-4.png" /></div>
-            <div class="tab-pane" id="pic-5"><img src="assets/images/book-5.png" /></div>
+            <div class="tab-pane active"><img id="imgcontainer" src="assets/upload_images/' . $images[0] . '" /></div>
         </div>
-        <ul class="preview-thumbnail nav nav-tabs">
-            <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="assets/images/book-1.png" /></a></li>
-            <li><a data-target="#pic-2" data-toggle="tab"><img src="assets/images/book-2.png" /></a></li>
-            <li><a data-target="#pic-3" data-toggle="tab"><img src="assets/images/book-3.png" /></a></li>
-            <li><a data-target="#pic-4" data-toggle="tab"><img src="assets/images/book-4.png" /></a></li>
-            <li><a data-target="#pic-5" data-toggle="tab"><img src="assets/images/book-5.png" /></a></li>
-        </ul>
+        ' . $ul . '
+        
     </div>
     <div class="details col-md-6">
-        <h3 class="product-title">'.$bookname.'</h3>
-        <p> From <span class="text-info">' .$bookarea.', '.$bookdistrict.', '.$bookdivision.'.</span></p>
-        <div><b>Author:</b> ' .$bookauthor.'</div>
-        <div><b>Category:</b> ' .$bookcategory.'</div>
-        <div><b>Subcategory:</b> ' .$booksubcategory.'</div>
-        <div><b>Publication:</b> ' .$bookpublications.'</div>
-        <p id="details" class="product-description">'.$bookdescription.'</p>
-        <h4 class="price">Price: <span>TK: ' .$price.'</span></h4>
+        <h3 class="product-title">' . $bookname . '</h3>
+        <p> From <span class="text-info">' . $bookarea . ', ' . $bookdistrict . ', ' . $bookdivision . '.</span></p>
+        <div><b>Author:</b> ' . $bookauthor . '</div>
+        <div><b>Category:</b> ' . $bookcategory . '</div>
+        <div><b>Subcategory:</b> ' . $booksubcategory . '</div>
+        <div><b>Publication:</b> ' . $bookpublications . '</div>
+        <p id="details" class="product-description">' . $bookdescription . '</p>
+        <h4 class="price">Price: <span>TK: ' . $price . '</span></h4>
         <div>
-            <button class="btn btn-primary my-1"><i class="fa-solid fa-phone m-2"></i>'.$bookusermobile.'</button>
+            
+            <button class="btn btn-primary"><a href="tel:' . $bookusermobile . '" class="text-decoration-none text-light"><i class="fa-solid fa-phone m-2"></i> ' . $bookusermobile . '</a></button>
             <button class="btn btn-primary my-1"><i class="fa-solid fa-comments m-2"></i></button>
-            <button id="favbtn" data-bookid="'.$postid.'" class="btn btn-primary my-1"><i class="fa-solid fa-heart m-2"></i></button>
+            <button id="favbtn" data-bookid="' . $postid . '" class="btn btn-primary my-1"><i class="fa-solid fa-heart m-2"></i></button>
         </div>
     </div>
 </div>';
@@ -258,27 +255,39 @@ while ($row = $result->fetch_assoc()) {
         }
     }
 </style>
-
 <div class="container">
     <div class="card">
         <div class="container-fliud">
-        <?php echo $html??""; ?>
+            <?php echo $html ?? ""; ?>
         </div>
     </div>
 </div>
 
 
 <?php include "assets/inc/footer.php"; ?>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    $(document).ready(function(){
-        $("#favbtn").click(function(){
+    $(document).ready(function() {
+        $("#favbtn").click(function() {
             $bookid = $(this).data("bookid");
             //alert($bookid);
-            $.post("users/classes/addtofav.php",{bookid:$bookid},function(d){
+            $.post("users/classes/addtofav.php", {
+                bookid: $bookid
+            }, function(d) {
                 //sweetalert(d);
-                alert(d);
+                Swal.fire(d);
+                // alert(d);
             })
-        })
+        });
+        //
+        $(".imgthumb").click(function(e) {
+            e.preventDefault();
+            $t = $(this);
+            // alert($t.data("img"))
+            $("#imgcontainer").fadeOut(500, function() {
+                $("#imgcontainer").attr("src", "assets/upload_images/" + $t.data("img")).fadeIn(500);
+            })
+        });
     });
 </script>
 </body>

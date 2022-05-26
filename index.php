@@ -60,7 +60,7 @@ while ($recentrow = $recentresult->fetch_assoc()) {
                 <img src="assets/upload_images/' . $firstImage . '">
             </a>
         </div>
-        <h4 class="mb-1" title="' . $name . '"> <a href="details.php?id=' . $id . '"> ' . substr($recentrow['name'], 0, 20) . ' </a> </h4>
+        <h4 class="mb-1" title="' . $name . '"> <a href="details.php?id=' . $id . '"> ' . $name . ' </a> </h4>
         <div class="price-box mb-2">
             <!-- <span class="price"> Price 200 </span> -->
             <span class="offer-price">Price ' . $price . ' </span>

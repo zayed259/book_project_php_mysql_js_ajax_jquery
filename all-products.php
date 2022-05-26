@@ -1,9 +1,8 @@
 <?php
 // require __DIR__."/vendor/autload.php";
 // use App\CommonFx;
-?>
-<?php
-require "assets/inc/leftcol.php"
+
+require "assets/inc/leftcol.php";
 ?>
 
 <div class="col-lg-6">

@@ -12,40 +12,76 @@ $errormessage = [];
 if (isset($_POST['add_product'])) {
     require 'connection.php';
     $book_name = isset($_POST['bookname']) ? $conn->escape_string($_POST['bookname']) : "";
-    if(empty($book_name)){ $error = true; $errormessage[] = "book name required!!";}
+    if (empty($book_name)) {
+        $error = true;
+        $errormessage[] = "book name required!!";
+    }
 
     $author = isset($_POST['author']) ? $conn->escape_string($_POST['author']) : "";
-    if($author == "-1"){ $error = true; $errormessage[] = "author name required!!";}
+    if ($author == "-1") {
+        $error = true;
+        $errormessage[] = "author name required!!";
+    }
 
     $publications = isset($_POST['publications']) ? $conn->escape_string($_POST['publications']) : "";
-    if($publications == "-1"){ $error = true; $errormessage[] = "publication name required!!";}
+    if ($publications == "-1") {
+        $error = true;
+        $errormessage[] = "publication name required!!";
+    }
 
     $details = isset($_POST['details']) ? $conn->escape_string($_POST['details']) : "";
-    if(empty($details)){ $error = true; $errormessage[] = "details required!!";}
+    if (empty($details)) {
+        $error = true;
+        $errormessage[] = "details required!!";
+    }
 
     $price = isset($_POST['price']) ? $conn->escape_string($_POST['price']) : "";
-    if(empty($price)){ $error = true; $errormessage[] = "price required!!";}
+    if (empty($price)) {
+        $error = true;
+        $errormessage[] = "price required!!";
+    }
 
-    $category =isset($_POST['category']) ? $conn->escape_string($_POST['category']) : "";
-    if($category == "-1"){ $error = true; $errormessage[] = "category required!!";}
+    $category = isset($_POST['category']) ? $conn->escape_string($_POST['category']) : "";
+    if ($category == "-1") {
+        $error = true;
+        $errormessage[] = "category required!!";
+    }
 
-    $subcategory =isset($_POST['subcategory']) ? $conn->escape_string($_POST['subcategory']) : "";
-    if($subcategory == "-1"){ $error = true; $errormessage[] = "subcategory required!!";}
+    $subcategory = isset($_POST['subcategory']) ? $conn->escape_string($_POST['subcategory']) : "";
+    if ($subcategory == "-1") {
+        $error = true;
+        $errormessage[] = "subcategory required!!";
+    }
 
-    $division =isset($_POST['division']) ? $conn->escape_string($_POST['division']) : "";
-    if($division == "-1"){ $error = true; $errormessage[] = "division required!!";}
+    $division = isset($_POST['division']) ? $conn->escape_string($_POST['division']) : "";
+    if ($division == "-1") {
+        $error = true;
+        $errormessage[] = "division required!!";
+    }
 
-    $district =isset($_POST['district']) ? $conn->escape_string($_POST['district']) : "";
-    if($district == "-1"){ $error = true; $errormessage[] = "district required!!";}
+    $district = isset($_POST['district']) ? $conn->escape_string($_POST['district']) : "";
+    if ($district == "-1") {
+        $error = true;
+        $errormessage[] = "district required!!";
+    }
 
-    $area =isset($_POST['area']) ? $conn->escape_string($_POST['area']) : "";
-    if($area == "-1"){ $error = true; $errormessage[] = "area required!!";}
+    $area = isset($_POST['area']) ? $conn->escape_string($_POST['area']) : "";
+    if ($area == "-1") {
+        $error = true;
+        $errormessage[] = "area required!!";
+    }
 
     $condition = isset($_POST['condition']) ? $conn->escape_string($_POST['condition']) : "";
-    if(empty($condition)){ $error = true; $errormessage[] = "condition required!!";}
+    if (empty($condition)) {
+        $error = true;
+        $errormessage[] = "condition required!!";
+    }
 
     $checkout = isset($_POST['checkout']) ? $conn->escape_string($_POST['checkout']) : "";
-    if(empty($checkout)){ $error = true; $errormessage[] = "checkout required!!";}
+    if (empty($checkout)) {
+        $error = true;
+        $errormessage[] = "checkout required!!";
+    }
 
     $images = $_FILES['images'];
     $images_name = $images['name'];
@@ -55,39 +91,39 @@ if (isset($_POST['add_product'])) {
     $images_type = $images['type'];
 
     $imagesArr = [];
-    if(!$error){
-    for ($i = 0; $i < count($images_name); $i++) {
-        $iname = strtolower($images_name[$i]);
-        $images_ext = explode('.', $iname);
-        $iext = strtolower(end($images_ext));
-        $images_new_name = uniqid('', true) . '.' . $iext;
-        $images_destination = 'assets/upload_images/' . $images_new_name;
-        if (move_uploaded_file($images_tmp[$i], $images_destination)) {
-            array_push($imagesArr, $images_new_name);
+    if (!$error) {
+        for ($i = 0; $i < count($images_name); $i++) {
+            $iname = strtolower($images_name[$i]);
+            $images_ext = explode('.', $iname);
+            $iext = strtolower(end($images_ext));
+            $images_new_name = uniqid('', true) . '.' . $iext;
+            $images_destination = 'assets/upload_images/' . $images_new_name;
+            if (move_uploaded_file($images_tmp[$i], $images_destination)) {
+                array_push($imagesArr, $images_new_name);
+            }
         }
-    }
-    $images = implode(',', $imagesArr);
+        $images = implode(',', $imagesArr);
 
-    if ($book_name == '' || $author == '' || $publications == '' || $details == '' || $price == '' || $category == '' || $subcategory == '' || $division == '' || $district == '' || $area == '' || $condition == '' || $checkout == '' || $images == '') {
-        $message = "All fields are required";
-    } else {
-        $insertQuery = "INSERT INTO `bookposts` (`name`, `details`, `price1`, `type`, `user_id`, `category_id`, `subcategory_id`, `division_id`, `district_id`, `area_id`, `author_id`, `publications_id`, `images`) VALUES ('$book_name', '$details', '$price', '$condition', '$session_id', '$category', '$subcategory', '$division', '$district', '$area', '$author', '$publications', '$images')";
-        $conn->query($insertQuery);
-        if ($conn->affected_rows > 0) {
-            $message = "Product Added Successfully";
+        if ($book_name == '' || $author == '' || $publications == '' || $details == '' || $price == '' || $category == '' || $subcategory == '' || $division == '' || $district == '' || $area == '' || $condition == '' || $checkout == '' || $images == '') {
+            $message = "All fields are required";
         } else {
-            $message = "Product Not Added";
+            $insertQuery = "INSERT INTO `bookposts` (`name`, `details`, `price1`, `type`, `user_id`, `category_id`, `subcategory_id`, `division_id`, `district_id`, `area_id`, `author_id`, `publications_id`, `images`) VALUES ('$book_name', '$details', '$price', '$condition', '$session_id', '$category', '$subcategory', '$division', '$district', '$area', '$author', '$publications', '$images')";
+            $conn->query($insertQuery);
+            if ($conn->affected_rows > 0) {
+                $message = "Product Added Successfully";
+            } else {
+                $message = "Product Not Added";
+            }
         }
-    }
-}//error false end
+    } //error false end
 }
 
 ?>
 <div class="container mt-5">
     <!-- add product -->
-    <?php echo $message??''; ?>
+    <?php echo $message ?? ''; ?>
     <?php
-    if($error){
+    if ($error) {
         echo "<ul>";
         foreach ($errormessage as  $value) {
             echo "<li>{$value}</li>";
@@ -98,7 +134,7 @@ if (isset($_POST['add_product'])) {
     <form class="form-control p-4" id="bookForm" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST" enctype="multipart/form-data">
         <div class="mb-4">
             <label for="bookname" class="form-label">Book Name</label>
-            <input type="text" class="form-control" id="bookname" name="bookname" value="<?php echo $book_name??""; ?>">
+            <input type="text" class="form-control" id="bookname" name="bookname" value="<?php echo $book_name ?? ""; ?>">
         </div>
         <div class="mb-4">
             <label class="form-label" for="author">Author Name</label>
@@ -109,18 +145,15 @@ if (isset($_POST['add_product'])) {
                 $author_sql1 = "SELECT * FROM `author` ORDER BY `name` ASC";
                 $author_result = $conn->query($author_sql1);
                 while ($row = $author_result->fetch_assoc()) {
-                    if(isset($author)){
-                        if($author == $row['id'] ){
+                    if (isset($author)) {
+                        if ($author == $row['id']) {
                             echo "<option value='{$row['id']}' selected>{$row['name']}</option>";
-                        }
-                        else{
+                        } else {
                             echo "<option value='{$row['id']}'>{$row['name']}</option>";
                         }
-                    }
-                    else{
+                    } else {
                         echo "<option value='{$row['id']}'>{$row['name']}</option>";
                     }
-                    
                 }
                 ?>
             </select>
@@ -134,15 +167,13 @@ if (isset($_POST['add_product'])) {
                 $publications_sql1 = "SELECT * FROM `publications` ORDER BY `name` ASC";
                 $publications_result = $conn->query($publications_sql1);
                 while ($row = $publications_result->fetch_assoc()) {
-                    if(isset($publications)){
-                        if($publications == $row['id'] ){
+                    if (isset($publications)) {
+                        if ($publications == $row['id']) {
                             echo "<option value='{$row['id']}' selected>{$row['name']}</option>";
-                        }
-                        else{
+                        } else {
                             echo "<option value='{$row['id']}'>{$row['name']}</option>";
                         }
-                    }
-                    else{
+                    } else {
                         echo "<option value='{$row['id']}'>{$row['name']}</option>";
                     }
                 }
@@ -151,22 +182,55 @@ if (isset($_POST['add_product'])) {
         </div>
         <div class="mb-4">
             <label for="details" class="form-label">Details</label>
-            <textarea name="details" id="details" rows="5" class="form-control" value="<?php echo $details??''; ?>"></textarea>
+            <textarea name="details" id="details" rows="5" class="form-control"><?php echo $details ?? ''; ?></textarea>
         </div>
         <div class="mb-4">
             <label for="price" class="form-label">Price</label>
-            <input type="number" class="form-control" id="price" name="price" value="<?php echo $price??''; ?>">
+            <input type="number" class="form-control" id="price" name="price" value="<?php echo $price ?? ''; ?>">
         </div>
         <div class="mb-4">
             <label class="form-label" for="category">Category</label>
             <select class="form-select" aria-label="Default select example" id="category" name="category">
                 <option selected value="-1">Select</option>
+                <?php
+                require 'connection.php';
+                $categoriessql1 = "SELECT * FROM `categories` ORDER BY `name` ASC";
+                $categoriessql1_result = $conn->query($categoriessql1);
+                while ($row = $categoriessql1_result->fetch_assoc()) {
+                    if (isset($category)) {
+                        if ($category == $row['id']) {
+                            echo "<option value='{$row['id']}' selected>{$row['name']}</option>";
+                        } else {
+                            echo "<option value='{$row['id']}'>{$row['name']}</option>";
+                        }
+                    } else {
+                        echo "<option value='{$row['id']}'>{$row['name']}</option>";
+                    }
+                }
+                ?>
             </select>
         </div>
         <div class="mb-4">
             <label class="form-label" for="subcategory">Subcategory</label>
             <select class="form-select" aria-label="Default select example" id="subcategory" name="subcategory">
                 <option selected value="-1">Select</option>
+                <?php
+                if ($error && $category && $category != "-1") {
+                    require_once "assets/classes/subcategories.php";
+                    $scatrows = getSubcat($category)['records'];
+                    foreach ($scatrows as $row) {
+                        if (isset($subcategory)) {
+                            if ($subcategory == $row['id']) {
+                                echo "<option value='{$row['id']}' selected>{$row['name']}</option>";
+                            } else {
+                                echo "<option value='{$row['id']}'>{$row['name']}</option>";
+                            }
+                        } else {
+                            echo "<option value='{$row['id']}'>{$row['name']}</option>";
+                        }
+                    }
+                }
+                ?>
 
             </select>
         </div>
@@ -174,6 +238,24 @@ if (isset($_POST['add_product'])) {
             <label class="form-label" for="">Division</label>
             <select class="form-select " aria-label="Default select example" id="division" name="division">
                 <option selected value="-1">Select</option>
+                <?php
+                $selectDivision = "SELECT * FROM `division` WHERE 1";
+                $selectResult = $conn->query($selectDivision);
+
+                if ($selectResult->num_rows > 0) {                   
+                    while ($row = $selectResult->fetch_assoc()) {
+                        if (isset($division)) {
+                            if ($division == $row['id']) {
+                                echo "<option value='{$row['id']}' selected>{$row['name']}</option>";
+                            } else {
+                                echo "<option value='{$row['id']}'>{$row['name']}</option>";
+                            }
+                        } else {
+                            echo "<option value='{$row['id']}'>{$row['name']}</option>";
+                        }
+                    }
+                }
+                ?>
 
             </select>
         </div>
@@ -237,13 +319,13 @@ if (isset($_POST['add_product'])) {
         })
 
         //for category start
-        $.getJSON("assets/classes/categories.php", function(data) {
+/*         $.getJSON("assets/classes/categories.php", function(data) {
             var category_opt = "";
             $.each(data, function(k, v) {
                 category_opt += "<option value='" + v.id + "'>" + v.name + "</option>";
             });
             $("#category").append(category_opt);
-        });
+        }); */
         //for category end
 
         //for subcategory start
@@ -273,13 +355,13 @@ if (isset($_POST['add_product'])) {
 
 
         //for division start
-        $.getJSON("assets/classes/division.php", function(data) {
+/*         $.getJSON("assets/classes/division.php", function(data) {
             var division_opt = "";
             $.each(data, function(k, v) {
                 division_opt += "<option value='" + v.id + "'>" + v.name + "</option>";
             });
             $("#division").append(division_opt);
-        });
+        }); */
         //for division end
 
         //for district start

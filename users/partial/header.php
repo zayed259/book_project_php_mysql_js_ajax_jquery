@@ -1,7 +1,13 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
-}
+  }
+  if (!isset($_SESSION['logged_in'])) {
+    header("location: ../index.php");
+  }
+  if (isset($_SESSION['logged_in']) && $_SESSION['user_role'] != '1') {
+    header("location: ../index.php");
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +21,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <link rel="stylesheet" href="../assets/css/dataTables.bootstrap5.min.css" />
     <link rel="stylesheet" href="../assets/css/dashboard.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <title>Boikhujo.com</title>
+    <title><?php echo isset($page) ? $site . " | " . $page : $site; ?></title>
     <style>
          .bookimage img:hover {
             transform: scale(1.1);

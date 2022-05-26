@@ -1,4 +1,8 @@
-<?php require "partial/header.php" ?>
+<?php
+require "../configuration.php";
+$page = "My Profile";
+require "partial/header.php";
+?>
 <main class="mt-5 pt-3">
     <div class="container-fluid">
     <section style="background-color: #eee;">

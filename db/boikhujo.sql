@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2022 at 03:11 PM
+-- Generation Time: Apr 19, 2022 at 02:12 PM
 -- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.11
+-- PHP Version: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -742,15 +742,17 @@ INSERT INTO `bookposts` (`id`, `name`, `details`, `price1`, `price2`, `type`, `u
 (28, 'Maa', 'Motherhood', '120.00', '0.00', 'used', 8, 1, 10, 2, 16, 148, 57, 54, '62529234b1cf13.59701756.jpg', '2022-04-10 08:15:48', NULL),
 (29, 'Understanding the Four Madhhabs: The Facts about Ijtihad and Taqlid', 'Why four schools of thought? Is it necessary to follow one? Discussion on these and other questions. A great book for those confused about this subject. Because of the traditional pious fear of distorting the Law of Islam, the overwhelming majority of the great scholars of the past - certainly well over ninety-nine percent of them - have adhered loyally to a madhhab. It is true that in the troubled fourteenth century a handful of dissenters appeared, but even these individuals never recommended that semi-educated Muslims should attempt ijtihad without expert help.', '500.00', '0.00', 'new', 6, 2, 24, 2, 18, 183, 4, 21, '625292359079e0.66430379.jpg', '2022-04-10 08:15:49', NULL),
 (30, 'Dighir Jole Kar Chhowa', 'Bangla Uponnas', '250.00', '0.00', 'used', 4, 1, 3, 6, 50, 412, 1, 105, '62529270a77157.52239763.jpg', '2022-04-10 08:16:48', NULL),
-(31, 'SECRET GARDEN', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', '350.00', '0.00', 'used', 2, 10, 92, 1, 1, 5, 8, 24, '6252929247f372.13233647.jpg', '2022-04-10 08:17:22', NULL),
+(31, 'SECRET GARDEN', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', '350.00', '0.00', 'used', 2, 10, 92, 1, 1, 5, 8, 24, '6252929247f372.13233647.jpg', '2022-04-17 10:03:02', NULL),
 (32, 'কুটু মিয়া', 'ফ্ল্যাপে লিখা কথা\r\nতার নাম কুটু মিয়া। বয়স চল্লিশ থেকে পঞ্চাশের মধ্যে। সে বাবুর্চি কাজ জানে। বাংলা , ইংলিশ, থাই, মোগলাই সব ধরনের রান্না পারে। পাইলট স্যার তাকে একটা সার্টিফিকেট দিয়েছেন। এই সার্টিফিকেট নিয়ে সে কাজ করতে এসেছে আলাউদ্দিন সাহেবের বাড়িতে।\r\nআলাউদ্দিন সাহেবের কুটু মিয়াকে পছন্দ হলো না। তাঁর নাম হলো কোথাও কোনো সমস্যা আছে। সমস্যা তিনি ধরতে পারছেন না।', '350.00', '0.00', 'used', 6, 10, 92, 1, 1, 12, 1, 72, '62529455af0f67.54951683.jpg', '2022-04-10 08:24:53', NULL),
 (33, 'Akas Zora Megh', 'Romantic Novel', '160.00', '0.00', 'used', 4, 1, 3, 7, 57, 478, 1, 21, '625294b5ee2eb7.58219792.jpg', '2022-04-10 08:26:29', NULL),
 (34, 'অক্টারিন', 'মার্ডার মিস্ট্রি হয়তো পড়েছেন আগে, কিন্তু পজেশন মিস্ট্রি ?\r\nকোন অশুভ শক্তির ছায়া পড়েছে দেশের অন্যতম প্রভাবশালী পরিবারের একমাত্র মেয়ের ওপর-- সে প্রশ্নের উত্তর খুঁজতে নিয়োগ করা হলো অদ্ভুত এক মানুষকে; অতিপ্রাকৃত ক্ষমতার সাথে যার আছে নিবিড়, তিক্ত অভিজ্ঞতা । কিন্তু তদন্তে ডুব দেবার পরই বুঝতে পারলো চোরাবালি আসলে কতোটা গভীর ।', '300.00', '0.00', 'used', 6, 10, 92, 1, 2, 47, 90, 83, '62529540cbc0d1.91732175.jpg', '2022-04-10 08:28:48', NULL),
 (35, 'Putul Nacher Itikotha', 'Bangla novel', '190.00', '0.00', 'used', 4, 1, 7, 5, 44, 367, 59, 7, '625295869bda51.89652543.png', '2022-04-10 08:29:58', NULL),
 (36, 'Aj Himur Biye', 'Bangla uponnas', '150.00', '0.00', 'used', 4, 1, 3, 6, 49, 407, 1, 23, '625296408969b5.75671049.jpg', '2022-04-10 08:33:04', NULL),
 (37, 'তারানাথ তান্ত্রিক', 'Collection of short Supernatural Tales. The narrator of these tales is Taranath Tantrik, a mystic figure and practitioner of occult. He is an astrologer by profession and had many encounters with the weird in his extensive travels. He shares these experiences with a few friends in his Mott lane house over cups of tea and cigarettes.', '400.00', '0.00', 'used', 6, 10, 92, 1, 13, 127, 49, 23, '625296bb16aa14.76558316.jpg', '2022-04-10 08:35:07', NULL),
-(38, 'পিশাচিনী', 'মুহম্মদ জাফর ইকবালের ভৌতিক গল্প সংকলন।\r\n\r\n*পিশাচিনী\r\n*রহমত চাচার একরাত\r\n*সহযাত্রী\r\n*বন্ধ ঘর\r\n*গাড়ি\r\n*মুগাবালী', '250.00', '0.00', 'used', 6, 10, 92, 8, 61, 502, 55, 23, '625298b8b32c34.83597589.jpg', '2022-04-10 08:43:36', NULL),
-(39, 'Putul Nacher Itikotha', 'Bangla novel', '190.00', '0.00', 'used', 4, 1, 7, 5, 44, 367, 59, 7, '625299e9869626.44464867.png', '2022-04-10 08:48:41', NULL);
+(38, 'পিশাচিনী', 'মুহম্মদ জাফর ইকবালের ভৌতিক গল্প সংকলন।\r\n\r\n*পিশাচিনী\r\n*রহমত চাচার একরাত\r\n*সহযাত্রী\r\n*বন্ধ ঘর\r\n*গাড়ি\r\n*মুগাবালী', '250.00', '0.00', 'used', 6, 10, 92, 8, 61, 502, 55, 23, '625298b8b32c34.83597589.jpg', '2022-04-17 10:23:16', '2022-04-17 10:23:16'),
+(39, 'Putul Nacher Itikotha', 'Bangla novel', '190.00', '0.00', 'used', 4, 1, 7, 5, 44, 367, 59, 7, '625299e9869626.44464867.png', '2022-04-17 10:22:53', '2022-04-17 10:22:53'),
+(41, 'অপেক্ষা', 'details', '390.00', '0.00', 'used', 15, 19, 113, 4, 34, 300, 1, 123, '625e40ab8c5f15.64751041.jpg,625e40ab8c7a65.06638020.jpg,625e40ab8c9252.11052030.jpg,625e40ab8ca896.02672591.jpg', '2022-04-19 04:55:07', NULL),
+(42, 'হিমু সমগ্র', 'details', '610.00', '0.00', 'new', 15, 9, 89, 2, 20, 198, 1, 78, '625e4102ca5c94.99863795.jpg,625e4102ca7223.34796093.jpg,625e4102ca7fd7.51526752.jpg,625e4102cae526.80675982.jpg', '2022-04-19 04:56:34', NULL);
 
 -- --------------------------------------------------------
 
@@ -901,11 +903,7 @@ INSERT INTO `division` (`id`, `name`, `created`) VALUES
 (5, 'Rajshahi', '2022-03-23 07:03:56'),
 (6, 'Sylhet', '2022-03-23 07:03:56'),
 (7, 'Rangpur', '2022-03-23 07:03:56'),
-(8, 'Mymensingh', '2022-03-23 07:03:56'),
-(10, 'Chandpur', '2022-04-02 09:00:38'),
-(12, 'Rajbari', '2022-04-02 09:00:56'),
-(13, 'Test', '2022-04-02 09:29:00'),
-(14, 'Faridpur2222', '2022-04-04 08:41:59');
+(8, 'Mymensingh', '2022-03-23 07:03:56');
 
 -- --------------------------------------------------------
 
@@ -925,8 +923,25 @@ CREATE TABLE `fav` (
 --
 
 INSERT INTO `fav` (`id`, `user_id`, `bookpost_id`, `created`) VALUES
-(1, 2, 39, '2022-04-16 09:04:57'),
-(3, 2, 38, '2022-04-16 09:05:36');
+(3, 2, 38, '2022-04-16 09:05:36'),
+(5, 4, 24, '2022-04-17 09:24:21'),
+(6, 4, 30, '2022-04-17 09:24:28'),
+(9, 4, 34, '2022-04-17 09:25:10'),
+(11, 2, 36, '2022-04-17 09:26:14'),
+(12, 2, 32, '2022-04-17 09:26:21'),
+(13, 14, 30, '2022-04-17 09:27:06'),
+(14, 14, 31, '2022-04-17 09:27:10'),
+(15, 14, 26, '2022-04-17 09:27:19'),
+(16, 14, 22, '2022-04-17 09:27:25'),
+(18, 5, 34, '2022-04-17 09:28:56'),
+(19, 5, 33, '2022-04-17 09:29:05'),
+(20, 14, 24, '2022-04-17 09:29:52'),
+(22, 14, 28, '2022-04-17 09:30:03'),
+(25, 2, 33, '2022-04-17 18:13:16'),
+(26, 0, 35, '2022-04-17 18:19:38'),
+(32, 15, 26, '2022-04-19 05:37:31'),
+(33, 15, 38, '2022-04-19 05:37:41'),
+(34, 2, 42, '2022-04-19 05:50:14');
 
 -- --------------------------------------------------------
 
@@ -1318,17 +1333,25 @@ INSERT INTO `users` (`id`, `full_name`, `mobile`, `password`, `role`, `created`)
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usersprofile`
+-- Table structure for table `users_profile`
 --
 
-CREATE TABLE `usersprofile` (
+CREATE TABLE `users_profile` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `details` varchar(512) NOT NULL,
-  `fbid` varchar(255) NOT NULL,
-  `ytlink` varchar(255) NOT NULL,
-  `profile_image` varchar(200) NOT NULL,
-  `created` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `division_id` int(11) NOT NULL,
+  `district_id` int(11) NOT NULL,
+  `area_id` int(11) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `website` varchar(150) NOT NULL,
+  `facebook` varchar(150) NOT NULL,
+  `twitter` varchar(150) NOT NULL,
+  `linkedin` varchar(150) NOT NULL,
+  `education` varchar(150) NOT NULL,
+  `job_designation` varchar(255) NOT NULL,
+  `profile_image` varchar(255) NOT NULL,
+  `details` varchar(1024) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1427,11 +1450,10 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `mobile` (`mobile`);
 
 --
--- Indexes for table `usersprofile`
+-- Indexes for table `users_profile`
 --
-ALTER TABLE `usersprofile`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
+ALTER TABLE `users_profile`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -1453,7 +1475,7 @@ ALTER TABLE `author`
 -- AUTO_INCREMENT for table `bookposts`
 --
 ALTER TABLE `bookposts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1477,7 +1499,7 @@ ALTER TABLE `division`
 -- AUTO_INCREMENT for table `fav`
 --
 ALTER TABLE `fav`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `message`
@@ -1510,9 +1532,9 @@ ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT for table `usersprofile`
+-- AUTO_INCREMENT for table `users_profile`
 --
-ALTER TABLE `usersprofile`
+ALTER TABLE `users_profile`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -1559,12 +1581,6 @@ ALTER TABLE `profile`
 --
 ALTER TABLE `subcategories`
   ADD CONSTRAINT `subcategories_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON UPDATE CASCADE;
-
---
--- Constraints for table `usersprofile`
---
-ALTER TABLE `usersprofile`
-  ADD CONSTRAINT `usersprofile_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

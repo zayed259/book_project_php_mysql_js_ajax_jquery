@@ -43,8 +43,10 @@
                         <!-- Grid column -->
                         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
                             <h6 class="text-uppercase mb-4 font-weight-bold ">Contact</h6>
-                            <p><i class="fas fa-envelope mr-3 text-start"></i> contact@isdbstudents.com</p>
-                            <p><i class="fas fa-phone mr-3 text-start"></i> +8801711223344</p>
+                            <p><a href="mailto:shaarifultarsi51@gmail.com" class="text-light text-decoration-none"><i class="fas fa-envelope mr-3 text-start"></i> shaarifultarsi51@gmail.com</a></p>
+                            <p><a href="mailto:zayedbd24@gmail.com" class="text-light text-decoration-none"><i class="fas fa-envelope mr-3 text-start"></i> zayedbd24@gmail.com</a></p>
+                            <p><a href="tel:+8801746959343" class="text-light text-decoration-none"><i class="fas fa-phone mr-3 text-start"></i> +8801746959343</a></p>
+                            <p><a href="tel:+8801629999666" class="text-light text-decoration-none"><i class="fas fa-phone mr-3 text-start"></i> +8801629999666</a></p>
                             <!-- <p class="text-center">
                                 <a class="text-white text-decoration-none" href="about_us.php">About Us</a>
                             </p> -->

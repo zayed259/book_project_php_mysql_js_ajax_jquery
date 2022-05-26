@@ -7,12 +7,12 @@ require "connection.php";
 
 use App\CommonFx;
 
-$count = 2;
+$count = 5;
 $pages = isset($_GET['page']) ? $_GET['page'] : 1;
 $start = ($pages - 1) * $count;
 
 
-$sql = "SELECT `bookposts`.*, `author`.`name` AS `author_name`, `division`.`name` AS `division_name`, `district`.`name` AS `district_name`, `area`.`name` AS `area_name` FROM `bookposts`, `author`, `division`, `district`, `area` WHERE `bookposts`.`author_id` = `author`.`id` AND `bookposts`.`division_id` = `division`.`id` AND `bookposts`.`district_id` = `district`.`id` AND `bookposts`.`area_id` = `area`.`id` ORDER BY `bookposts`.`id` DESC, `bookposts`.`deleted` = null LIMIT $start, $count";
+$sql = "SELECT `bookposts`.*, `author`.`name` AS `author_name`, `division`.`name` AS `division_name`, `district`.`name` AS `district_name`, `area`.`name` AS `area_name` FROM `bookposts`, `author`, `division`, `district`, `area` WHERE `bookposts`.`author_id` = `author`.`id` AND `bookposts`.`division_id` = `division`.`id` AND `bookposts`.`district_id` = `district`.`id` AND `bookposts`.`area_id` = `area`.`id` ORDER BY `bookposts`.`id` DESC, `bookposts`.`deleted` is null LIMIT $start, $count";
 
 $result = $conn->query($sql);
 
@@ -57,7 +57,7 @@ while ($row = $result->fetch_assoc()) {
 
 
 //author list query
-$author_sql = "SELECT `author`.`name` AS `author_name`, `author`.`id` AS `author_id`, count(*) as `total` FROM `bookposts`, `author` WHERE `bookposts`.`author_id` = `author`.`id` GROUP BY `author_id`";
+$author_sql = "SELECT `author`.`name` AS `author_name`, `author`.`id` AS `author_id`, count(*) as `total` FROM `bookposts`, `author` WHERE `bookposts`.`author_id` = `author`.`id` GROUP BY `author_id` ORDER BY `bookposts`.`id` DESC, `bookposts`.`deleted` is null";
 $author_result = $conn->query($author_sql);
 $author_list = "";
 while ($author_row = $author_result->fetch_assoc()) {
@@ -76,7 +76,7 @@ while ($author_row = $author_result->fetch_assoc()) {
 }
 
 //category list query
-$category_sql = "SELECT `categories`.`name` AS `category_name`, `categories`.`id` AS `category_id`, count(*) as `total` FROM `bookposts`, `categories` WHERE `bookposts`.`category_id` = `categories`.`id` GROUP BY `category_id`";
+$category_sql = "SELECT `categories`.`name` AS `category_name`, `categories`.`id` AS `category_id`, count(*) as `total` FROM `bookposts`, `categories` WHERE `bookposts`.`category_id` = `categories`.`id` GROUP BY `category_id` ORDER BY `bookposts`.`id` DESC";
 $category_result = $conn->query($category_sql);
 $category_list = "";
 while ($category_row = $category_result->fetch_assoc()) {
@@ -95,7 +95,7 @@ while ($category_row = $category_result->fetch_assoc()) {
 }
 
 //publications list query
-$publication_sql = "SELECT `publications`.`name` AS `publication_name`, `publications`.`id` AS `publication_id`, count(*) as `total` FROM `bookposts`, `publications` WHERE `bookposts`.`publications_id` = `publications`.`id` GROUP BY `publication_id`";
+$publication_sql = "SELECT `publications`.`name` AS `publication_name`, `publications`.`id` AS `publication_id`, count(*) as `total` FROM `bookposts`, `publications` WHERE `bookposts`.`publications_id` = `publications`.`id` GROUP BY `publication_id` ORDER BY `bookposts`.`id` DESC";
 $publication_result = $conn->query($publication_sql);
 $publication_list = "";
 while ($publication_row = $publication_result->fetch_assoc()) {
@@ -114,7 +114,7 @@ while ($publication_row = $publication_result->fetch_assoc()) {
 }
 
 //division list query
-$division_sql = "SELECT  `division`.`id` AS `division_id` , `division`.`name` AS `division_name`, count(*) as `total` FROM `bookposts`, `division` WHERE `bookposts`.`division_id` = `division`.`id` GROUP BY bookposts.`division_id`";
+$division_sql = "SELECT  `division`.`id` AS `division_id` , `division`.`name` AS `division_name`, count(*) as `total` FROM `bookposts`, `division` WHERE `bookposts`.`division_id` = `division`.`id` GROUP BY bookposts.`division_id` ORDER BY `bookposts`.`id` DESC";
 $division_result = $conn->query($division_sql);
 $division_list = "";
 while ($division_row = $division_result->fetch_assoc()) {
@@ -133,7 +133,7 @@ while ($division_row = $division_result->fetch_assoc()) {
 }
 
 //district list query
-$district_sql = "SELECT `district`.`name` AS `district_name`, `district`.`id` AS `district_id`, count(*) as `total` FROM `bookposts`, `district` WHERE `bookposts`.`district_id` = `district`.`id` GROUP BY `district_id`";
+$district_sql = "SELECT `district`.`name` AS `district_name`, `district`.`id` AS `district_id`, count(*) as `total` FROM `bookposts`, `district` WHERE `bookposts`.`district_id` = `district`.`id` GROUP BY `district_id` ORDER BY `bookposts`.`id` DESC";
 $district_result = $conn->query($district_sql);
 $district_list = "";
 while ($district_row = $district_result->fetch_assoc()) {
@@ -152,7 +152,7 @@ while ($district_row = $district_result->fetch_assoc()) {
 }
 
 //area list query
-$area_sql = "SELECT `area`.`name` AS `area_name`, `area`.`id` AS `area_id`, count(*) as `total` FROM `bookposts`, `area` WHERE `bookposts`.`area_id` = `area`.`id` GROUP BY `area_id`";
+$area_sql = "SELECT `area`.`name` AS `area_name`, `area`.`id` AS `area_id`, count(*) as `total` FROM `bookposts`, `area` WHERE `bookposts`.`area_id` = `area`.`id` GROUP BY `area_id` ORDER BY `bookposts`.`id` DESC";
 $area_result = $conn->query($area_sql);
 $area_list = "";
 while ($area_row = $area_result->fetch_assoc()) {
